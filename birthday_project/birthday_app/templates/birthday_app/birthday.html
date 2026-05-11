@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday My Love! 💕</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Sweet Alert for better UI -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts for elegant typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(-5deg); }
+        }
+        
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493; }
+            50% { text-shadow: 0 0 30px #ff1493, 0 0 40px #ff69b4; }
+        }
+        
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(100px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+        
+        @keyframes bounceIn {
+            0% { opacity: 0; transform: scale(0.3); }
+            50% { opacity: 1; transform: scale(1.05); }
+            70% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes rotateIn {
+            from { opacity: 0; transform: rotate(-180deg) scale(0); }
+            to { opacity: 1; transform: rotate(0) scale(1); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: -1000px 0; }
+            100% { background-position: 1000px 0; }
+        }
+           @keyframes floatUp {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-500px) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    .hint-message {
+        transition: all 0.3s ease;
+    }
+    
+    .hint-message:hover {
+        color: #ff69b4 !important;
+        transform: scale(1.05);
+    }
+        @keyframes floatingHearts {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes floatingHearts2 {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(-100px) rotate(-360deg);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        @keyframes spinSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .animate-float-reverse {
+            animation: floatReverse 3.5s ease-in-out infinite;
+        }
+        
+        .animate-glow {
+            animation: glow 2s ease-in-out infinite;
+        }
+        
+        .animate-slide-left {
+            animation: slideInLeft 0.8s ease-out;
+        }
+        
+        .animate-slide-right {
+            animation: slideInRight 0.8s ease-out;
+        }
+        
+        .animate-bounce-in {
+            animation: bounceIn 0.8s ease-out;
+        }
+        
+        .animate-rotate-in {
+            animation: rotateIn 0.6s ease-out;
+        }
+        
+        .animate-pulse-slow {
+            animation: pulse 3s ease-in-out infinite;
+        }
+        
+        .floating-heart {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatingHearts 6s ease-in forwards;
+        }
+        
+        .floating-heart-2 {
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatingHearts2 7s ease-in forwards;
+        }
+        
+        .photo-card {
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .photo-card:hover {
+            transform: translateY(-15px) scale(1.05) rotate(1deg);
+            box-shadow: 0 30px 50px rgba(255, 105, 180, 0.4);
+        }
+        
+        .music-card {
+            transition: all 0.3s ease;
+        }
+        
+        .music-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+        
+        .bg-gradient-sweet {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #ff69b4 50%, #ff1493 75%, #667eea 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        
+        .shimmer-effect {
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            background-size: 1000px 100%;
+            animation: shimmer 3s infinite;
+        }
+        
+        .spin-slow {
+            animation: spinSlow 20s linear infinite;
+        }
+        
+        .wish-item {
+            transition: all 0.3s ease;
+        }
+        
+        .wish-item:hover {
+            transform: translateX(10px);
+            background: linear-gradient(90deg, #fff0f5, #ffe6f0);
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #ffe6f0;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff69b4, #ff1493);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+        }
+        
+        /* Music player toggle animation */
+        .music-panel {
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        
+        .music-panel.minimized {
+            transform: translateX(calc(100% - 60px));
+        }
+    </style>
+</head>
+<body class="bg-gradient-sweet min-h-screen overflow-x-hidden">
+    
+    <!-- Floating Hearts Container -->
+    <div id="heartsContainer"></div>
+    
+    <!-- Music Panel with Both Songs -->
+    <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 music-panel" id="musicPanel">
+        <div class="bg-white/95 backdrop-blur-xl rounded-l-2xl shadow-2xl p-4 w-96">
+            <!-- Handle to drag/minimize -->
+            <div class="flex justify-between items-center mb-3 cursor-move" id="musicPanelHandle">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-music text-pink-500 animate-pulse"></i>
+                    <span class="text-sm font-semibold text-gray-600">Birthday Playlist 🎵</span>
+                </div>
+                <button onclick="toggleMusicPanel()" class="text-gray-400 hover:text-pink-500">
+                    <i class="fas fa-chevron-right" id="panelToggleIcon"></i>
+                </button>
+            </div>
+            
+            <!-- Song 1: A Thousand Years -->
+            <div class="music-card mb-4">
+                <div class="bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl p-3">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="fas fa-crown text-yellow-500"></i>
+                        <span class="text-xs font-semibold text-pink-600">❤️ SONG 1 - MAIN LOVE SONG ❤️</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2 font-semibold">"A Thousand Years" - Christina Perri</p>
+                    <iframe 
+                        src="https://open.spotify.com/embed/track/3EzfjzgNaWtTJZbxfAU3vT?utm_source=generator" 
+                        width="100%" 
+                        height="80" 
+                        frameBorder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy"
+                        class="rounded-lg">
+                    </iframe>
+                </div>
+            </div>
+            
+            <!-- Song 2: Second Love Song -->
+            <div class="music-card">
+                <div class="bg-gradient-to-r from-purple-50 to-pink-100 rounded-xl p-3">
+                    <div class="flex items-center gap-2 mb-2">
+                        <i class="fas fa-heart text-red-500"></i>
+                        <span class="text-xs font-semibold text-pink-600">💕 SONG 2 - BONUS LOVE SONG 💕</span>
+                    </div>
+                    <p class="text-sm text-gray-600 mb-2 font-semibold">"Perfect" / Special Love Song</p>
+                    <iframe 
+                        src="https://open.spotify.com/embed/track/5h5CQwgjgQrBUacsqR2zR7?utm_source=generator" 
+                        width="100%" 
+                        height="80" 
+                        frameBorder="0" 
+                        allowfullscreen="" 
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                        loading="lazy"
+                        class="rounded-lg">
+                    </iframe>
+                </div>
+            </div>
+            
+            <div class="text-center mt-3">
+                <p class="text-xs text-gray-400">🎧 Click play on any song to start the music</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Main Content Container -->
+    <div class="container mx-auto px-4 py-8 relative z-10">
+        
+        <!-- Hero Section with Cake -->
+        <div class="text-center mb-16 animate-bounce-in">
+            <div class="inline-block animate-float cursor-pointer" onclick="blowCandles()">
+                <div class="text-9xl relative">
+                    🎂
+                    <div class="absolute -top-5 left-1/2 transform -translate-x-1/2 flex gap-1">
+                        <div class="w-1 h-4 bg-orange-400 animate-pulse"></div>
+                        <div class="w-1 h-5 bg-orange-400 animate-pulse delay-100"></div>
+                        <div class="w-1 h-4 bg-orange-400 animate-pulse delay-200"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-bold text-white mt-8 mb-4 animate-glow" style="font-family: 'Dancing Script', cursive;">
+                Happy Birthday, {{ girl_name }}! 🎉
+            </h1>
+            
+            <div class="flex justify-center items-center gap-2 mb-4 animate-slide-left">
+                <i class="fas fa-star text-yellow-300 text-2xl"></i>
+                <i class="fas fa-star text-yellow-300 text-3xl"></i>
+                <i class="fas fa-star text-yellow-300 text-2xl"></i>
+            </div>
+            
+            <p class="text-2xl md:text-3xl text-pink-200 font-semibold animate-slide-right">
+                <i class="fas fa-heart text-red-400 animate-pulse"></i>
+                The most beautiful person in my universe
+                <i class="fas fa-heart text-red-400 animate-pulse"></i>
+            </p>
+            
+            <div class="mt-8 flex justify-center gap-4 flex-wrap">
+                <div class="bg-white/20 backdrop-blur rounded-full px-6 py-2 text-white animate-float">
+                    <i class="fas fa-calendar-alt"></i> Your Special Day
+                </div>
+                <div class="bg-white/20 backdrop-blur rounded-full px-6 py-2 text-white animate-float-reverse">
+                    <i class="fas fa-clock"></i> Celebrating You
+                </div>
+                <div class="bg-white/20 backdrop-blur rounded-full px-6 py-2 text-white animate-float">
+                    <i class="fas fa-gift"></i> Made With Love
+                </div>
+            </div>
+        </div>
+        
+        <!-- Love Letter Section -->
+        <div class="max-w-4xl mx-auto mb-16 animate-slide-left">
+            <div class="bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-8 md:p-12 transform transition-all hover:scale-105 hover:shadow-3xl">
+                <div class="text-center mb-6">
+                    <i class="fas fa-envelope-open-text text-pink-500 text-6xl animate-float"></i>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-bold text-center text-pink-600 mb-6" style="font-family: 'Dancing Script', cursive;">
+                    💌 To My Dearest {{ girl_name }} 💌
+                </h2>
+                
+                {% if love_message %}
+                    <div class="text-gray-700 text-lg leading-relaxed space-y-4">
+                        {{ love_message.message|linebreaks }}
+                    </div>
+                {% else %}
+                    <div class="text-gray-700 text-lg md:text-xl leading-relaxed space-y-4 text-center">
+                        <p class="italic">"I have died every day waiting for you<br>Darling, don't be afraid, I have loved you<br>For a thousand years<br>I'll love you for a thousand more"</p>
+                        
+                        <div class="border-t-2 border-pink-200 my-6"></div>
+                        
+                        <p>Every day with you feels like a beautiful dream. Your smile lights up my darkest days, your laugh is my favorite melody, and your love is the greatest gift I've ever received.</p>
+                        
+                        <p>On your birthday, I want you to know that you're not just my girlfriend - you're my best friend, my soulmate, and my everything. Every moment with you is precious, and I cherish every second we spend together.</p>
+                        
+                        <p class="font-semibold text-pink-600">You are my today and all of my tomorrows. I love you more than a thousand years could ever express.</p>
+                    </div>
+                {% endif %}
+                
+                <div class="text-center mt-8">
+                    <div class="inline-block bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-full px-8 py-3 shadow-lg">
+                        <p class="text-xl">Forever yours,</p>
+                        <p class="text-2xl font-bold">{{ your_name }} ❤️</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+      <!-- Photo Gallery -->
+<div class="mb-16">
+    <h2 class="text-5xl md:text-6xl font-bold text-center text-white mb-12 animate-slide-right" style="font-family: 'Dancing Script', cursive;">
+        <i class="fas fa-camera-retro"></i> Our Beautiful Memories <i class="fas fa-heart"></i>
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for photo in photos %}
+        <div class="photo-card bg-white rounded-3xl overflow-hidden shadow-2xl cursor-pointer transform transition-all group" 
+             onclick="showPhotoModal('{{ photo.image.url }}', '{{ photo.caption }}')"
+             style="animation: bounceIn 0.6s ease-out {{ forloop.counter0|stringformat:'i' }}s both">
+            <div class="relative overflow-hidden">
+                <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110">
+                {% if photo.is_favorite %}
+                <div class="absolute top-4 right-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-white rounded-full px-3 py-1 text-sm font-semibold shadow-lg animate-pulse">
+                    <i class="fas fa-star"></i> Favorite
+                </div>
+                {% endif %}
+                <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity"></div>
+            </div>
+            <div class="p-5 text-center bg-white">
+                <i class="fas fa-heart text-pink-400 text-sm"></i>
+                <p class="text-pink-600 font-semibold text-lg mt-2">{{ photo.caption }}</p>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full text-center bg-white/90 rounded-3xl p-12">
+            <i class="fas fa-cloud-upload-alt text-7xl text-pink-400 mb-4 animate-float"></i>
+            <p class="text-gray-600 text-2xl mb-2">Add your precious moments!</p>
+            <p class="text-gray-500">Go to /admin to upload your special photos</p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+        <!-- Birthday Countdown -->
+        <div class="max-w-5xl mx-auto mb-16 animate-slide-left">
+            <div class="bg-white/90 backdrop-blur rounded-3xl shadow-2xl p-8 text-center">
+                <h3 class="text-4xl font-bold text-pink-600 mb-6" style="font-family: 'Dancing Script', cursive;">
+                    <i class="fas fa-hourglass-half"></i> Celebrating Your Special Day!
+                </h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white transform hover:scale-105 transition-all">
+                        <div class="text-5xl md:text-6xl font-bold" id="days">0</div>
+                        <div class="text-sm mt-2 uppercase tracking-wider">Days</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white transform hover:scale-105 transition-all">
+                        <div class="text-5xl md:text-6xl font-bold" id="hours">0</div>
+                        <div class="text-sm mt-2 uppercase tracking-wider">Hours</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white transform hover:scale-105 transition-all">
+                        <div class="text-5xl md:text-6xl font-bold" id="minutes">0</div>
+                        <div class="text-sm mt-2 uppercase tracking-wider">Minutes</div>
+                    </div>
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white transform hover:scale-105 transition-all">
+                        <div class="text-5xl md:text-6xl font-bold" id="seconds">0</div>
+                        <div class="text-sm mt-2 uppercase tracking-wider">Seconds</div>
+                    </div>
+                </div>
+                <p class="text-gray-600 mt-8 text-lg">✨ Every second with you is a treasure ✨</p>
+            </div>
+        </div>
+        
+        <!-- Birthday Wishes Wall -->
+        <div class="max-w-4xl mx-auto mb-16 animate-slide-right">
+            <div class="bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-center text-pink-600 mb-6" style="font-family: 'Dancing Script', cursive;">
+                    <i class="fas fa-comment-dots"></i> Birthday Wishes Wall
+                </h2>
+                
+                <form method="POST" class="mb-8 space-y-4" id="wishForm">
+                    {% csrf_token %}
+                    <div class="relative">
+                        <i class="fas fa-user absolute left-4 top-4 text-pink-400"></i>
+                        <input type="text" name="name" placeholder="Your name" required
+                               class="w-full pl-12 pr-4 py-3 border-2 border-pink-200 rounded-xl focus:outline-none focus:border-pink-500 transition-all">
+                    </div>
+                    <div class="relative">
+                        <i class="fas fa-pencil-alt absolute left-4 top-4 text-pink-400"></i>
+                        <textarea name="message" rows="3" placeholder="Write your birthday wish for {{ girl_name }}..." required
+                                  class="w-full pl-12 pr-4 py-3 border-2 border-pink-200 rounded-xl focus:outline-none focus:border-pink-500 transition-all"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-paper-plane"></i> Send Your Love 💕
+                    </button>
+                </form>
+                
+                <div class="space-y-3 max-h-96 overflow-y-auto" id="wishesList">
+                    {% for wish in wishes %}
+                    <div class="wish-item bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl p-4 transform transition-all hover:shadow-lg">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
+                                {{ wish.name|first|upper }}
+                            </div>
+                            <span class="font-bold text-pink-700">{{ wish.name }}</span>
+                            <span class="text-xs text-gray-500 ml-auto">{{ wish.created_at|date:"F j, Y \a\t g:i A" }}</span>
+                        </div>
+                        <p class="text-gray-700 ml-10">{{ wish.message }}</p>
+                        <div class="ml-10 mt-2">
+                            <i class="fas fa-heart text-pink-300 text-xs"></i>
+                            <i class="fas fa-heart text-pink-300 text-xs"></i>
+                            <i class="fas fa-heart text-pink-300 text-xs"></i>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="text-center text-gray-500 py-12">
+                        <i class="fas fa-comment fa-4x mb-3 text-pink-300"></i>
+                        <p class="text-lg">Be the first to leave a birthday wish! 🎂</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        <!-- Romantic Quote Section -->
+        <div class="max-w-3xl mx-auto mb-16 animate-rotate-in">
+            <div class="bg-white/20 backdrop-blur rounded-3xl p-8 text-center border-2 border-white/30">
+                <i class="fas fa-quote-left text-white text-4xl mb-4 opacity-50"></i>
+                <p class="text-white text-xl md:text-2xl italic leading-relaxed">
+                    "I will love you for a thousand years,<br>
+                    and if that's not enough,<br>
+                    I'll love you for a thousand more."
+                </p>
+                <i class="fas fa-quote-right text-white text-4xl mt-4 opacity-50"></i>
+                <div class="mt-6">
+                    <p class="text-pink-200 text-lg">— A Thousand Years, Christina Perri —</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Romantic Pickup Lines Game Section -->
+<div class="max-w-3xl mx-auto mb-16 animate-slide-left">
+    <div class="bg-gradient-to-br from-pink-100 to-purple-100 rounded-3xl shadow-2xl p-8 transform transition-all hover:shadow-3xl">
+        <div class="text-center mb-6">
+            <i class="fas fa-grin-tongue-squint text-pink-500 text-6xl animate-bounce"></i>
+            <h2 class="text-4xl md:text-5xl font-bold text-pink-600 mt-4 mb-2" style="font-family: 'Dancing Script', cursive;">
+                💕 Play A Game With Me? 💕
+            </h2>
+            <p class="text-gray-600 text-lg">Answer these romantic questions... I have a feeling you'll love the answers! 😘</p>
+        </div>
+        
+        <!-- Question Display Area -->
+        <div class="bg-white/90 backdrop-blur rounded-2xl p-8 mb-6 shadow-lg">
+            <div class="text-center">
+                <div class="text-pink-400 text-sm mb-2 font-semibold" id="questionCounter">
+                    Question <span id="currentQNum">1</span> of <span id="totalQNum">8</span>
+                </div>
+                <div class="text-2xl md:text-3xl font-bold text-gray-800 mb-6" id="pickupQuestion">
+                    What time is it?
+                </div>
+                
+                <!-- Answer Input Area -->
+                <div class="flex flex-col md:flex-row gap-3 justify-center">
+                    <input type="text" 
+                           id="userAnswer" 
+                           placeholder="Type your answer here..." 
+                           class="flex-1 px-4 py-3 border-2 border-pink-300 rounded-xl focus:outline-none focus:border-pink-500 transition-all text-center md:text-left"
+                           onkeypress="checkEnter(event)">
+                    <button onclick="checkAnswer()" 
+                            class="bg-gradient-to-r from-pink-500 to-pink-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                        <i class="fas fa-heart"></i> Answer
+                    </button>
+                </div>
+                
+                <!-- Feedback Area -->
+                <div id="feedbackMessage" class="mt-6 hidden">
+                    <div class="bg-gradient-to-r from-green-100 to-green-200 rounded-xl p-4">
+                        <i class="fas fa-smile-wink text-green-500 text-2xl mb-2"></i>
+                        <p id="feedbackText" class="text-green-700 text-lg"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Progress Bar -->
+        <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+            <div id="progressBar" class="bg-gradient-to-r from-pink-400 to-pink-600 h-3 rounded-full transition-all duration-500" style="width: 12.5%"></div>
+        </div>
+        
+        <!-- Reset Button (appears after all questions) -->
+        <div id="resetButton" class="text-center mt-6 hidden">
+            <button onclick="resetGame()" 
+                    class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-semibold hover:shadow-2xl transform hover:scale-105 transition-all">
+                <i class="fas fa-redo-alt"></i> Play Again 💕
+            </button>
+        </div>
+    </div>
+</div>
+<!-- My Answers Review Section -->
+<div class="max-w-4xl mx-auto mb-16 animate-slide-right">
+    <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl shadow-2xl p-8">
+        <div class="text-center mb-6">
+            <i class="fas fa-journal-whills text-pink-500 text-6xl animate-float"></i>
+            <h2 class="text-4xl md:text-5xl font-bold text-pink-600 mt-4 mb-2" style="font-family: 'Dancing Script', cursive;">
+                💭 My Sweet Answers 💭
+            </h2>
+            <p class="text-gray-600 text-lg">A collection of your beautiful responses and my romantic replies 💕</p>
+        </div>
+        
+        <!-- Review Container -->
+        <div id="reviewContainer" class="space-y-4 max-h-96 overflow-y-auto p-2">
+            <div class="text-center text-gray-500 py-8">
+                <i class="fas fa-heart-beat text-4xl mb-3 text-pink-300"></i>
+                <p>Answer some pickup lines first, and they'll appear here! 💖</p>
+            </div>
+        </div>
+        
+        <!-- Share/Download Button -->
+        <div id="shareSection" class="text-center mt-6 hidden">
+            <button onclick="downloadAnswers()" 
+                    class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-2xl transform hover:scale-105 transition-all mr-3">
+                <i class="fas fa-download"></i> Download Our Conversation 💕
+            </button>
+            <button onclick="shareAnswers()" 
+                    class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-2xl transform hover:scale-105 transition-all">
+                <i class="fas fa-share-alt"></i> Share This Moment 💫
+            </button>
+        </div>
+    </div>
+</div>
+        
+        <!-- Footer -->
+        <div class="text-center mb-8">
+            <div class="bg-white/20 backdrop-blur rounded-2xl p-6 inline-block">
+                <div class="flex gap-2 justify-center mb-3">
+                    <i class="fas fa-heart text-red-400 animate-pulse"></i>
+                    <i class="fas fa-heart text-pink-400 animate-pulse delay-100"></i>
+                    <i class="fas fa-heart text-red-400 animate-pulse delay-200"></i>
+                </div>
+                <p class="text-white text-xl">
+                    You mean the world to me, {{ girl_name }}. Today and every day.
+                </p>
+                <p class="text-pink-200 mt-3">Made with infinite love just for you 💕</p>
+                <p class="text-white/60 text-sm mt-4">
+                    <i class="fas fa-music"></i> Featuring "A Thousand Years" by Christina Perri
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Photo Modal -->
+    <div id="photoModal" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center cursor-pointer" onclick="closeModal()">
+        <div class="relative max-w-5xl max-h-screen p-4">
+            <img id="modalImage" class="max-w-full max-h-screen rounded-2xl shadow-2xl" alt="Memory">
+            <p id="modalCaption" class="text-white text-center mt-6 text-2xl font-semibold"></p>
+        </div>
+        <button class="absolute top-5 right-5 text-white text-6xl hover:scale-110 transition-transform" onclick="closeModal()">
+            &times;
+        </button>
+    </div>
+    
+    <script>
+        // Variables for music panel
+        let isPanelMinimized = false;
+        
+        // Toggle music panel
+        function toggleMusicPanel() {
+            const panel = document.getElementById('musicPanel');
+            const icon = document.getElementById('panelToggleIcon');
+            isPanelMinimized = !isPanelMinimized;
+            if (isPanelMinimized) {
+                panel.classList.add('minimized');
+                icon.classList.remove('fa-chevron-right');
+                icon.classList.add('fa-chevron-left');
+            } else {
+                panel.classList.remove('minimized');
+                icon.classList.remove('fa-chevron-left');
+                icon.classList.add('fa-chevron-right');
+            }
+        }
+        
+        // Create floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝', '🎂', '🎉', '🎈', '💋', '🌸', '🌹', '✨', '⭐'];
+            const isType1 = Math.random() > 0.5;
+            heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.className = isType1 ? 'floating-heart' : 'floating-heart-2';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
+            heart.style.opacity = Math.random() * 0.8 + 0.2;
+            document.getElementById('heartsContainer').appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 6000);
+        }
+        
+        // Create hearts every 150ms
+        setInterval(createHeart, 150);
+        
+        // Blow candles effect
+        function blowCandles() {
+            Swal.fire({
+                title: '🎂 Make a Wish! 🎂',
+                html: `
+                    <p class="text-lg mb-3">Close your eyes and make a wish...</p>
+                    <p class="text-pink-500 font-semibold">✨ May all your dreams come true ✨</p>
+                `,
+                icon: 'success',
+                confirmButtonColor: '#ff1493',
+                confirmButtonText: '💖 I Made My Wish 💖',
+                background: 'linear-gradient(135deg, #ffe6f0, #ffb6c1)',
+                showClass: {
+                    popup: 'animate__animated animate__bounceIn'
+                }
+            });
+            
+            // Create massive confetti
+            const colors = ['#ff1493', '#ff69b4', '#ffb6c1', '#ffc0cb', '#ff69b4', '#ff85b3'];
+            for(let i = 0; i < 200; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = (Math.random() * 12 + 6) + 'px';
+                confetti.style.height = (Math.random() * 12 + 6) + 'px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * window.innerWidth + 'px';
+                confetti.style.top = '-20px';
+                confetti.style.pointerEvents = 'none';
+                confetti.style.zIndex = '9999';
+                confetti.style.borderRadius = '2px';
+                confetti.style.opacity = '0.8';
+                document.body.appendChild(confetti);
+                
+                const animation = confetti.animate([
+                    { transform: 'translateY(0px) rotate(0deg)', opacity: 1 },
+                    { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 540}deg)`, opacity: 0 }
+                ], {
+                    duration: Math.random() * 3000 + 2000,
+                    easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+                });
+                
+                animation.onfinish = () => confetti.remove();
+            }
+        }
+        
+        // Photo modal
+        function showPhotoModal(imgUrl, caption) {
+            const modal = document.getElementById('photoModal');
+            const modalImg = document.getElementById('modalImage');
+            const modalCaption = document.getElementById('modalCaption');
+            modal.style.display = 'flex';
+            modalImg.src = imgUrl;
+            modalCaption.textContent = caption;
+        }
+        
+        function closeModal() {
+            document.getElementById('photoModal').style.display = 'none';
+        }
+        
+       // Countdown timer for her birthday - May 15th
+function updateCountdown() {
+    const now = new Date();
+    
+    // Set birthday date: May 15th of current year
+    // Month is 0-indexed, so 4 = May
+    let birthday = new Date(now.getFullYear(), 4, 15);
+    
+    // If today is already past May 15th, set to next year
+    if (now > birthday) {
+        birthday = new Date(now.getFullYear() + 1, 4, 15);
+    }
+    
+    // Calculate the difference in milliseconds
+    const diff = birthday - now;
+    
+    // Check if it's her birthday today (May 15th)
+    const isBirthdayToday = now.getDate() === 15 && now.getMonth() === 4;
+    
+    if (isBirthdayToday) {
+        // It's her birthday!
+        document.getElementById('days').textContent = '0';
+        document.getElementById('hours').textContent = '0';
+        document.getElementById('minutes').textContent = '0';
+        document.getElementById('seconds').textContent = '0';
+        
+        // Show birthday celebration if not already shown
+        if (!window.birthdayCelebrated) {
+            window.birthdayCelebrated = true;
+            Swal.fire({
+                title: '🎉 HAPPY BIRTHDAY! 🎉',
+                html: `
+                    <p class="text-xl mb-3">It's YOUR special day! 🎂</p>
+                    <p class="text-pink-500 font-semibold">You mean the world to me! 💕</p>
+                `,
+                icon: 'success',
+                confirmButtonColor: '#ff1493',
+                confirmButtonText: 'I Love You! 💕'
+            });
+            blowCandles();
+        }
+        return;
+    }
+    
+    // Calculate days (using ceil to count FULL days remaining)
+    const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+    
+    // Calculate remaining hours after subtracting days
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+    
+    // Update the display
+    document.getElementById('days').textContent = days;
+    document.getElementById('hours').textContent = hours;
+    document.getElementById('minutes').textContent = minutes;
+    document.getElementById('seconds').textContent = seconds;
+    
+    // Debug - check what the countdown shows
+    console.log(`Today: ${now.toLocaleDateString()}`);
+    console.log(`Birthday: ${birthday.toLocaleDateString()}`);
+    console.log(`Days remaining: ${days}`);
+    console.log(`Hours remaining: ${hours}`);
+    
+    // Update the countdown message
+    const countdownMessage = document.getElementById('countdownMessage');
+    if (countdownMessage) {
+        if (days === 1) {
+            countdownMessage.innerHTML = '🎉 TOMORROW IS YOUR BIRTHDAY! 🎉';
+            countdownMessage.className = 'text-pink-200 font-semibold mt-4 animate-pulse text-xl';
+        } else if (days <= 7) {
+            countdownMessage.innerHTML = `💕 Only ${days} days until your special day! 💕`;
+            countdownMessage.className = 'text-pink-200 font-semibold mt-4 text-lg';
+        } else {
+            countdownMessage.innerHTML = `🎈 ${days} days until we celebrate YOU! 🎈`;
+            countdownMessage.className = 'text-pink-200 font-semibold mt-4';
+        }
+    }
+}
+
+// Start the countdown
+setInterval(updateCountdown, 1000);
+updateCountdown();
+        
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+        
+        // Welcome message on page load with music suggestion
+        setTimeout(() => {
+            Swal.fire({
+                title: '🌸 Welcome to Your Special Day! 🌸',
+                html: `
+                    <p class="text-lg mb-2">Dear <strong>{{ girl_name }}</strong>,</p>
+                    <p class="mb-3">This website was made with all my love for you.</p>
+                    <p class="text-pink-500 font-semibold">🎵 Don't forget to play the love songs on the right! 🎵</p>
+                    <div class="mt-3 flex justify-center gap-2">
+                        <i class="fas fa-heart text-red-400"></i>
+                        <i class="fas fa-heart text-pink-400"></i>
+                        <i class="fas fa-heart text-red-400"></i>
+                    </div>
+                `,
+                icon: 'success',
+                confirmButtonColor: '#ff1493',
+                confirmButtonText: '💖 I Love You 💖',
+                background: 'white',
+                allowOutsideClick: false
+            });
+        }, 500);
+        
+        // Animate elements on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'all 0.8s ease-out';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all animated elements
+        document.querySelectorAll('.animate-slide-left, .animate-slide-right, .animate-bounce-in, .animate-rotate-in').forEach(el => {
+            if (!el.classList.contains('animate-bounce-in')) {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(30px)';
+                observer.observe(el);
+            }
+        });
+        
+        // Auto-refresh wishes every 15 seconds
+        setInterval(() => {
+            fetch(window.location.href)
+                .then(response => response.text())
+                .then(html => {
+                    const parser = new DOMParser();
+                    const doc = parser.parseFromString(html, 'text/html');
+                    const newWishes = doc.querySelector('#wishesList')?.innerHTML;
+                    const currentWishes = document.querySelector('#wishesList')?.innerHTML;
+                    if (newWishes && currentWishes !== newWishes) {
+                        document.querySelector('#wishesList').innerHTML = newWishes;
+                    }
+                })
+                .catch(err => console.log('Auto-refresh error:', err));
+        }, 15000);
+        
+        // Make music panel draggable
+        const panel = document.getElementById('musicPanel');
+        const handle = document.getElementById('musicPanelHandle');
+        let isDragging = false;
+        let startX, startY, startRight, startTop;
+        
+        if (handle) {
+            handle.addEventListener('mousedown', (e) => {
+                if (e.target.closest('button')) return;
+                isDragging = true;
+                startX = e.clientX;
+                startY = e.clientY;
+                const rect = panel.getBoundingClientRect();
+                startRight = window.innerWidth - rect.right;
+                startTop = rect.top;
+                panel.style.transition = 'none';
+                e.preventDefault();
+            });
+            
+            document.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                const dx = e.clientX - startX;
+                const dy = e.clientY - startY;
+                let newRight = startRight - dx;
+                let newTop = startTop + dy;
+                
+                newRight = Math.min(Math.max(newRight, 10), window.innerWidth - 50);
+                newTop = Math.min(Math.max(newTop, 10), window.innerHeight - 200);
+                
+                panel.style.right = newRight + 'px';
+                panel.style.top = newTop + 'px';
+                panel.style.transform = 'translateY(0)';
+            });
+            
+            document.addEventListener('mouseup', () => {
+                if (isDragging) {
+                    isDragging = false;
+                    panel.style.transition = '';
+                }
+            });
+        }
+        
+        // Add sparkle effect on click
+        document.addEventListener('click', (e) => {
+            for(let i = 0; i < 6; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.innerHTML = '✨';
+                sparkle.style.position = 'fixed';
+                sparkle.style.left = (e.pageX + (Math.random() - 0.5) * 60) + 'px';
+                sparkle.style.top = (e.pageY + (Math.random() - 0.5) * 60) + 'px';
+                sparkle.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                sparkle.style.pointerEvents = 'none';
+                sparkle.style.zIndex = '10000';
+                sparkle.style.opacity = '1';
+                sparkle.style.animation = 'floatUp 1s ease-out forwards';
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => sparkle.remove(), 1000);
+            }
+        });
+        
+        // Create confetti on load
+        setTimeout(() => {
+            for(let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.style.position = 'fixed';
+                    confetti.style.width = '8px';
+                    confetti.style.height = '8px';
+                    confetti.style.backgroundColor = ['#ff1493', '#ff69b4', '#ffb6c1'][Math.floor(Math.random() * 3)];
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.top = '-10px';
+                    confetti.style.pointerEvents = 'none';
+                    confetti.style.zIndex = '9999';
+                    document.body.appendChild(confetti);
+                    
+                    confetti.animate([
+                        { transform: 'translateY(0px) rotate(0deg)', opacity: 1 },
+                        { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                    ], {
+                        duration: Math.random() * 2000 + 1500,
+                        easing: 'linear'
+                    }).onfinish = () => confetti.remove();
+                }, i * 50);
+            }
+        }, 1000);
+ // Load pickup lines from Django backend
+let pickupLines = [];
+
+// Get pickup lines from the server
+const serverPickupLines = {{ pickup_lines|safe }};
+
+if (serverPickupLines && serverPickupLines.length > 0) {
+    pickupLines = serverPickupLines;
+    console.log("Loaded", pickupLines.length, "pickup lines from database");
+} else {
+    // Fallback default pickup lines in case none are in database
+    pickupLines = [
+        {
+            question: "Do you know what time it is? 🕐",
+            expectedAnswers: ["time", "what time", "the time", "yes", "yeah", "sure"],
+            response: "No, it's the time I think about you! 💭💕",
+            hint: "Think about time..."
+        },
+        {
+            question: "Are you a magician? ✨",
+            expectedAnswers: ["magician", "yes", "yeah", "maybe", "no"],
+            response: "Because whenever I look at you, everyone else disappears! 🎩✨",
+            hint: "It's about magic..."
+        },
+        {
+            question: "Did it hurt? 😢",
+            expectedAnswers: ["hurt", "what", "when", "yes", "no"],
+            response: "When you fell from heaven? Because you're an angel! 👼💕",
+            hint: "Think about angels..."
+        }
+    ];
+    console.log("Using fallback pickup lines");
+}
+
+// Update the total count display when DOM is ready
+document.addEventListener('DOMContentLoaded', function() {
+    if (document.getElementById('totalQNum')) {
+        document.getElementById('totalQNum').textContent = pickupLines.length;
+    }
+    // Initialize the game
+    if (typeof updateQuestionDisplay === 'function') {
+        updateQuestionDisplay();
+    }
+});
+let currentQuestionIndex = 0;
+let answeredQuestions = [];
+let gameCompleted = false;
+
+// Function to update the display
+function updateQuestionDisplay() {
+    if (currentQuestionIndex < pickupLines.length) {
+        const currentLine = pickupLines[currentQuestionIndex];
+        document.getElementById('pickupQuestion').textContent = currentLine.question;
+        document.getElementById('currentQNum').textContent = currentQuestionIndex + 1;
+        document.getElementById('totalQNum').textContent = pickupLines.length;
+        
+        // Clear input and hide feedback
+        document.getElementById('userAnswer').value = '';
+        document.getElementById('feedbackMessage').classList.add('hidden');
+        document.getElementById('userAnswer').focus();
+        
+        // Update progress bar
+        const progress = ((currentQuestionIndex) / pickupLines.length) * 100;
+        document.getElementById('progressBar').style.width = progress + '%';
+        
+        // Add a little hint (optional - shows on hover)
+        const hint = document.createElement('div');
+        hint.className = 'text-xs text-gray-400 mt-2 cursor-help';
+        hint.innerHTML = `<i class="fas fa-lightbulb"></i> Hint: ${currentLine.hint}`;
+        
+        // Remove old hint if exists
+        const oldHint = document.querySelector('.hint-message');
+        if (oldHint) oldHint.remove();
+        
+        const questionDiv = document.getElementById('pickupQuestion');
+        if (!document.querySelector('.hint-message')) {
+            const newHint = document.createElement('div');
+            newHint.className = 'hint-message text-xs text-gray-400 mt-2 cursor-help';
+            newHint.innerHTML = `<i class="fas fa-lightbulb"></i> Hint: ${currentLine.hint}`;
+            questionDiv.parentNode.appendChild(newHint);
+        }
+    } else {
+        // Game completed
+        gameCompleted = true;
+        document.getElementById('pickupQuestion').innerHTML = "🎉 You've completed all the pickup lines! 🎉";
+        document.getElementById('userAnswer').disabled = true;
+        document.querySelector('button[onclick="checkAnswer()"]').disabled = true;
+        document.getElementById('resetButton').classList.remove('hidden');
+        
+        // Sweet completion message
+        Swal.fire({
+            title: '💕 You Did It! 💕',
+            html: `
+                <p class="text-lg mb-3">You answered all ${pickupLines.length} pickup lines!</p>
+                <p class="text-pink-500 font-semibold">I hope they made you smile as much as you make me smile 🥰</p>
+                <div class="mt-3">
+                    <i class="fas fa-heart text-red-400 text-2xl"></i>
+                    <i class="fas fa-heart text-pink-400 text-2xl mx-2"></i>
+                    <i class="fas fa-heart text-red-400 text-2xl"></i>
+                </div>
+            `,
+            icon: 'success',
+            confirmButtonColor: '#ff1493',
+            confirmButtonText: 'I Love You! 💕',
+            background: 'linear-gradient(135deg, #ffe6f0, #ffb6c1)'
+        });
+        
+        // Also show a cute message in the game area
+        const feedback = document.getElementById('feedbackMessage');
+        const feedbackText = document.getElementById('feedbackText');
+        feedback.classList.remove('hidden');
+        feedbackText.innerHTML = "✨ You're amazing! Thank you for playing along. I love you more than all these pickup lines combined! ✨";
+        feedback.querySelector('div').classList.remove('bg-gradient-to-r', 'from-green-100', 'to-green-200');
+        feedback.querySelector('div').classList.add('bg-gradient-to-r', 'from-pink-100', 'to-pink-200');
+    }
+}
+
+// Function to check answer
+function checkAnswer() {
+    if (gameCompleted) return;
+    
+    const userInput = document.getElementById('userAnswer').value.trim().toLowerCase();
+    const currentLine = pickupLines[currentQuestionIndex];
+    
+    // Check if the answer matches any expected answer
+    let isCorrect = false;
+    for (let expected of currentLine.expectedAnswers) {
+        if (userInput.includes(expected) || expected.includes(userInput)) {
+            isCorrect = true;
+            break;
+        }
+    }
+    
+    // Also accept if she just types anything (make it fun, not strict)
+    // But if she types nonsense, we'll still give a sweet response
+    const feedback = document.getElementById('feedbackMessage');
+    const feedbackText = document.getElementById('feedbackText');
+    
+    if (userInput === "") {
+        Swal.fire({
+            title: '😊 Hey Beautiful!',
+            text: 'Type something sweet... anything! I promise to like your answer 😘',
+            icon: 'info',
+            confirmButtonColor: '#ff1493',
+            timer: 2000,
+            showConfirmButton: false
+        });
+        return;
+    }
+    
+    if (isCorrect || userInput.length > 0) {
+        // Show the sweet response
+        feedback.classList.remove('hidden');
+        feedbackText.innerHTML = currentLine.response;
+        
+        // Add confetti effect
+        createMiniConfetti();
+        
+        // Mark this question as answered
+        answeredQuestions.push(currentQuestionIndex);
+        
+        // Move to next question after a delay
+        setTimeout(() => {
+            currentQuestionIndex++;
+            updateQuestionDisplay();
+        }, 2000);
+    } else {
+        // Even if answer doesn't match, give a cute response
+        feedback.classList.remove('hidden');
+        feedbackText.innerHTML = "Hmm... that's not quite right, but I still think you're adorable! Try typing something close to the hint? 💕";
+        
+        setTimeout(() => {
+            feedback.classList.add('hidden');
+        }, 2000);
+    }
+}
+
+// Allow Enter key to submit answer
+function checkEnter(event) {
+    if (event.key === 'Enter') {
+        checkAnswer();
+    }
+}
+
+// Reset the game
+function resetGame() {
+    currentQuestionIndex = 0;
+    answeredQuestions = [];
+    gameCompleted = false;
+    
+    // Re-enable input and button
+    document.getElementById('userAnswer').disabled = false;
+    document.querySelector('button[onclick="checkAnswer()"]').disabled = false;
+    
+    // Update display
+    updateQuestionDisplay();
+    
+    // Hide reset button
+    document.getElementById('resetButton').classList.add('hidden');
+    
+    Swal.fire({
+        title: '🔄 Game Restarted! 🔄',
+        text: 'Want to play again? I have more love to share! 💕',
+        icon: 'success',
+        confirmButtonColor: '#ff1493',
+        timer: 1500,
+        showConfirmButton: false
+    });
+}
+
+// Small confetti for correct answers
+function createMiniConfetti() {
+    for(let i = 0; i < 30; i++) {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = '6px';
+        confetti.style.height = '6px';
+        confetti.style.backgroundColor = ['#ff1493', '#ff69b4', '#ffb6c1'][Math.floor(Math.random() * 3)];
+        confetti.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 100) + 'px';
+        confetti.style.top = (window.innerHeight / 2 + (Math.random() - 0.5) * 100) + 'px';
+        confetti.style.pointerEvents = 'none';
+        confetti.style.zIndex = '9999';
+        confetti.style.borderRadius = '50%';
+        document.body.appendChild(confetti);
+        
+        const animation = confetti.animate([
+            { transform: 'scale(1) translateY(0)', opacity: 1 },
+            { transform: 'scale(0) translateY(-50px)', opacity: 0 }
+        ], {
+            duration: 1000,
+            easing: 'ease-out'
+        });
+        
+        animation.onfinish = () => confetti.remove();
+    }
+}
+
+// Initialize the game
+updateQuestionDisplay();
+
+// Add a fun floating heart effect when focusing on input
+document.getElementById('userAnswer').addEventListener('focus', () => {
+    createHeart();
+    createHeart();
+});
+
+// Keep the floating hearts function from before
+function createHeart() {
+    const heart = document.createElement('div');
+    const hearts = ['❤️', '💕', '💖', '💗', '💓'];
+    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.position = 'fixed';
+    heart.style.left = Math.random() * 100 + '%';
+    heart.style.bottom = '0px';
+    heart.style.fontSize = '20px';
+    heart.style.pointerEvents = 'none';
+    heart.style.zIndex = '9999';
+    heart.style.animation = 'floatUp 3s ease-in forwards';
+    document.body.appendChild(heart);
+    
+    setTimeout(() => heart.remove(), 3000);
+}
+// Array to store answered questions with user responses
+let answeredHistory = [];
+
+// Modified checkAnswer function to save responses
+const originalCheckAnswer = checkAnswer;
+window.checkAnswer = function() {
+    if (gameCompleted) return;
+    
+    const userInput = document.getElementById('userAnswer').value.trim();
+    const currentLine = pickupLines[currentQuestionIndex];
+    
+    // Check if the answer matches any expected answer
+    let isCorrect = false;
+    for (let expected of currentLine.expectedAnswers) {
+        if (userInput.toLowerCase().includes(expected) || expected.includes(userInput.toLowerCase())) {
+            isCorrect = true;
+            break;
+        }
+    }
+    
+    const feedback = document.getElementById('feedbackMessage');
+    const feedbackText = document.getElementById('feedbackText');
+    
+    if (userInput === "") {
+        Swal.fire({
+            title: '😊 Hey Beautiful!',
+            text: 'Type something sweet... anything! I promise to like your answer 😘',
+            icon: 'info',
+            confirmButtonColor: '#ff1493',
+            timer: 2000,
+            showConfirmButton: false
+        });
+        return;
+    }
+    
+    // Save the answer to history
+    answeredHistory.push({
+        question: currentLine.question,
+        userAnswer: userInput,
+        sweetResponse: currentLine.response,
+        timestamp: new Date().toLocaleString()
+    });
+    
+    // Update the review section
+    updateReviewSection();
+    
+    if (isCorrect || userInput.length > 0) {
+        // Show the sweet response
+        feedback.classList.remove('hidden');
+        feedbackText.innerHTML = currentLine.response;
+        
+        // Add confetti effect
+        createMiniConfetti();
+        
+        // Mark this question as answered
+        answeredQuestions.push(currentQuestionIndex);
+        
+        // Move to next question after a delay
+        setTimeout(() => {
+            currentQuestionIndex++;
+            updateQuestionDisplay();
+        }, 2000);
+    } else {
+        feedback.classList.remove('hidden');
+        feedbackText.innerHTML = "Hmm... that's not quite right, but I still think you're adorable! Try typing something close to the hint? 💕";
+        
+        setTimeout(() => {
+            feedback.classList.add('hidden');
+        }, 2000);
+    }
+};
+
+// Function to update the review section
+function updateReviewSection() {
+    const reviewContainer = document.getElementById('reviewContainer');
+    const shareSection = document.getElementById('shareSection');
+    
+    if (answeredHistory.length === 0) {
+        reviewContainer.innerHTML = `
+            <div class="text-center text-gray-500 py-8">
+                <i class="fas fa-heart-beat text-4xl mb-3 text-pink-300"></i>
+                <p>Answer some pickup lines first, and they'll appear here! 💖</p>
+            </div>
+        `;
+        shareSection.classList.add('hidden');
+        return;
+    }
+    
+    shareSection.classList.remove('hidden');
+    
+    // Build the review HTML
+    let reviewHTML = '';
+    answeredHistory.forEach((item, index) => {
+        reviewHTML += `
+            <div class="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-all transform hover:scale-102">
+                <div class="flex items-center justify-between mb-2">
+                    <div class="flex items-center gap-2">
+                        <div class="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">
+                            ${index + 1}
+                        </div>
+                        <span class="text-xs text-gray-400">${item.timestamp}</span>
+                    </div>
+                    <i class="fas fa-heart text-pink-400 text-sm"></i>
+                </div>
+                <div class="mb-3">
+                    <p class="text-gray-500 text-sm">💬 My Love Asked:</p>
+                    <p class="text-gray-800 font-semibold text-lg">${item.question}</p>
+                </div>
+                <div class="mb-3 bg-pink-50 rounded-lg p-3">
+                    <p class="text-pink-500 text-sm">💖 My Answer:</p>
+                    <p class="text-gray-700 italic">"${item.userAnswer}"</p>
+                </div>
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-3">
+                    <p class="text-purple-500 text-sm">✨ His Sweet Reply:</p>
+                    <p class="text-gray-700 font-semibold">${item.sweetResponse}</p>
+                </div>
+            </div>
+        `;
+    });
+    
+    reviewContainer.innerHTML = reviewHTML;
+    
+    // Add a cute summary at the top
+    const summaryDiv = document.createElement('div');
+    summaryDiv.className = 'bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-4 mb-4 text-center';
+    summaryDiv.innerHTML = `
+        <div class="flex items-center justify-center gap-2 mb-2">
+            <i class="fas fa-chart-line text-pink-500"></i>
+            <span class="font-bold text-gray-700">Our Love Conversation</span>
+            <i class="fas fa-chart-line text-pink-500"></i>
+        </div>
+        <p class="text-gray-600">You've answered <span class="font-bold text-pink-600">${answeredHistory.length}</span> sweet questions! 💕</p>
+        <div class="flex justify-center gap-1 mt-2">
+            ${'❤️'.repeat(Math.min(answeredHistory.length, 10))}
+        </div>
+    `;
+    
+    if (reviewContainer.firstChild && reviewContainer.firstChild.classList && reviewContainer.firstChild.classList.contains('bg-gradient-to-r')) {
+        reviewContainer.removeChild(reviewContainer.firstChild);
+    }
+    reviewContainer.insertBefore(summaryDiv, reviewContainer.firstChild);
+}
+
+// Function to download answers as a text file
+function downloadAnswers() {
+    if (answeredHistory.length === 0) return;
+    
+    let content = `💕 Our Love Conversation 💕\n`;
+    content += `Date: ${new Date().toLocaleString()}\n`;
+    content += `═`.repeat(50) + `\n\n`;
+    
+    answeredHistory.forEach((item, index) => {
+        content += `💬 Question ${index + 1}: ${item.question}\n`;
+        content += `💖 My Answer: ${item.userAnswer}\n`;
+        content += `✨ His Reply: ${item.sweetResponse}\n`;
+        content += `🕐 ${item.timestamp}\n`;
+        content += `─`.repeat(40) + `\n\n`;
+    });
+    
+    content += `\n${'❤️'.repeat(30)}\n`;
+    content += `You answered ${answeredHistory.length} questions! I love you more than all of them combined! 💕\n`;
+    
+    // Create and download the file
+    const blob = new Blob([content], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `our_love_conversation_${new Date().toISOString().slice(0,19)}.txt`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    
+    Swal.fire({
+        title: '💾 Saved! 💾',
+        text: 'Our sweet conversation has been downloaded! Keep it forever 💕',
+        icon: 'success',
+        confirmButtonColor: '#ff1493',
+        timer: 2000,
+        showConfirmButton: false
+    });
+}
+
+// Function to share answers (copy to clipboard)
+function shareAnswers() {
+    if (answeredHistory.length === 0) return;
+    
+    let shareText = `💕 My love asked me these sweet questions and here are our answers! 💕\n\n`;
+    
+    answeredHistory.forEach((item, index) => {
+        shareText += `${index + 1}. ${item.question}\n`;
+        shareText += `   I said: "${item.userAnswer}"\n`;
+        shareText += `   He replied: "${item.sweetResponse}"\n\n`;
+    });
+    
+    shareText += `We answered ${answeredHistory.length} questions! 🥰💕`;
+    
+    // Copy to clipboard
+    navigator.clipboard.writeText(shareText).then(() => {
+        Swal.fire({
+            title: '📋 Copied! 📋',
+            text: 'Our conversation is copied to your clipboard! Share the love 💕',
+            icon: 'success',
+            confirmButtonColor: '#ff1493',
+            timer: 2000,
+            showConfirmButton: false
+        });
+    }).catch(() => {
+        Swal.fire({
+            title: '😅 Oops!',
+            text: 'Could not copy automatically. You can take a screenshot instead! 📸',
+            icon: 'info',
+            confirmButtonColor: '#ff1493'
+        });
+    });
+}
+
+// Update reset function to also clear history
+const originalResetGame = resetGame;
+window.resetGame = function() {
+    currentQuestionIndex = 0;
+    answeredQuestions = [];
+    answeredHistory = [];
+    gameCompleted = false;
+    
+    // Re-enable input and button
+    document.getElementById('userAnswer').disabled = false;
+    document.querySelector('button[onclick="checkAnswer()"]').disabled = false;
+    
+    // Update display
+    updateQuestionDisplay();
+    updateReviewSection();
+    
+    // Hide reset button
+    document.getElementById('resetButton').classList.add('hidden');
+    
+    Swal.fire({
+        title: '🔄 Game Restarted! 🔄',
+        text: 'Want to play again? Your previous answers are saved in the review section! 💕',
+        icon: 'success',
+        confirmButtonColor: '#ff1493',
+        timer: 2000,
+        showConfirmButton: false
+    });
+};
+
+// CSS animation for review items
+const style = document.createElement('style');
+style.textContent = `
+    .hover\\:scale-102:hover {
+        transform: scale(1.02);
+    }
+    #reviewContainer::-webkit-scrollbar {
+        width: 8px;
+    }
+    #reviewContainer::-webkit-scrollbar-track {
+        background: #fce4ec;
+        border-radius: 10px;
+    }
+    #reviewContainer::-webkit-scrollbar-thumb {
+        background: linear-gradient(135deg, #ff69b4, #ff1493);
+        border-radius: 10px;
+    }
+    @keyframes slideInReview {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    #reviewContainer > div {
+        animation: slideInReview 0.5s ease-out;
+    }
+`;
+document.head.appendChild(style);
+
+</script>
+</body>
+</html>
