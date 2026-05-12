@@ -99,12 +99,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # WhiteNoise static files storage
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Railway Deployment Settings
+# Render Deployment Settings
+import dj_database_url
+import os
+
 if 'DATABASE_URL' in os.environ:
     DEBUG = False
-    # Allow any host on Railway
-    ALLOWED_HOSTS = ['*', '.up.railway.app']
+    ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
     
-    # Media files note: On Railway free tier, uploaded files may not persist
-    # For permanent photo storage, use Cloudinary (free tier available)
-    print("🚀 Running in Railway production mode")
+    DATABASES = {
+        'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
+    }
+    
+    # Static files on Render
+    STATIC_URL = '/static/'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
