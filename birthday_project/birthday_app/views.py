@@ -34,5 +34,5 @@ def birthday_home(request):
         'pickup_lines': pickup_lines_data,
         'girl_name': 'Faith ♥',  # Change to her name
         'your_name': 'Ezekiel',  # Change to your name
-    }
+}                                           
     return render(request, 'birthday_app/birthday.html', context)
