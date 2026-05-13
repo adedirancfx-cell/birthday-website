@@ -117,8 +117,7 @@ else:
         }
     }
 
-# Host settings
-ALLOWED_HOSTS = ['*', '.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*', '.onrender.com', 'love-you.onrender.com', 'localhost', '127.0.0.1']
 
 # Production settings
 if not DEBUG:
