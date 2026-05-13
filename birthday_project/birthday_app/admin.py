@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Photo, LoveMessage, BirthdayWish, PickupLine
+from .models import Photo, LoveMessage, BirthdayWish, PickupLine,Music
 
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
@@ -42,3 +42,21 @@ class PickupLineAdmin(admin.ModelAdmin):
         if not obj.hint:
             obj.hint = f"Try typing something like: {obj.expected_keywords.split(',')[0]}"
         super().save_model(request, obj, form, change)
+
+@admin.register(Music)
+class MusicAdmin(admin.ModelAdmin):
+    list_display = ['title', 'song_type', 'order', 'is_active']
+    list_display_links = ['title']  # This fixes the error - makes 'title' clickable
+    list_editable = ['order', 'is_active', 'song_type']  # These can be edited inline
+    list_filter = ['song_type', 'is_active']
+    search_fields = ['title']
+    ordering = ['order']
+    fieldsets = (
+        ('Song Information', {
+            'fields': ('title', 'spotify_embed_url', 'song_type', 'order', 'is_active')
+        }),
+        ('How to get Spotify URL', {
+            'fields': (),
+            'description': '1. Go to Spotify → Right-click song → Share → Embed Song<br>2. Copy the src="..." URL from the iframe code<br>3. Paste it in the field above'
+        })
+    )

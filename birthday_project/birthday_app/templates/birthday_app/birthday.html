@@ -240,67 +240,57 @@
     <div id="heartsContainer"></div>
     
     <!-- Music Panel with Both Songs -->
-    <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 music-panel" id="musicPanel">
-        <div class="bg-white/95 backdrop-blur-xl rounded-l-2xl shadow-2xl p-4 w-96">
-            <!-- Handle to drag/minimize -->
-            <div class="flex justify-between items-center mb-3 cursor-move" id="musicPanelHandle">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-music text-pink-500 animate-pulse"></i>
-                    <span class="text-sm font-semibold text-gray-600">Birthday Playlist 🎵</span>
-                </div>
-                <button onclick="toggleMusicPanel()" class="text-gray-400 hover:text-pink-500">
-                    <i class="fas fa-chevron-right" id="panelToggleIcon"></i>
-                </button>
+   
+    <!-- Music Panel with Dynamic Songs -->
+<div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50 music-panel" id="musicPanel">
+    <div class="bg-white/95 backdrop-blur-xl rounded-l-2xl shadow-2xl p-4 w-96">
+        <!-- Handle to drag/minimize -->
+        <div class="flex justify-between items-center mb-3 cursor-move" id="musicPanelHandle">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-music text-pink-500 animate-pulse"></i>
+                <span class="text-sm font-semibold text-gray-600">Birthday Playlist 🎵</span>
             </div>
-            
-            <!-- Song 1: A Thousand Years -->
-            <div class="music-card mb-4">
-                <div class="bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl p-3">
-                    <div class="flex items-center gap-2 mb-2">
+            <button onclick="toggleMusicPanel()" class="text-gray-400 hover:text-pink-500">
+                <i class="fas fa-chevron-right" id="panelToggleIcon"></i>
+            </button>
+        </div>
+        
+        {% for song in music_list %}
+        <div class="music-card mb-4">
+            <div class="bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl p-3">
+                <div class="flex items-center gap-2 mb-2">
+                    {% if song.song_type == 'main' %}
                         <i class="fas fa-crown text-yellow-500"></i>
-                        <span class="text-xs font-semibold text-pink-600">❤️ SONG 1 - MAIN LOVE SONG ❤️</span>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-2 font-semibold">"A Thousand Years" - Christina Perri</p>
-                    <iframe 
-                        src="https://open.spotify.com/embed/track/3EzfjzgNaWtTJZbxfAU3vT?utm_source=generator" 
-                        width="100%" 
-                        height="80" 
-                        frameBorder="0" 
-                        allowfullscreen="" 
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                        loading="lazy"
-                        class="rounded-lg">
-                    </iframe>
-                </div>
-            </div>
-            
-            <!-- Song 2: Second Love Song -->
-            <div class="music-card">
-                <div class="bg-gradient-to-r from-purple-50 to-pink-100 rounded-xl p-3">
-                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-xs font-semibold text-pink-600">❤️ MAIN LOVE SONG ❤️</span>
+                    {% else %}
                         <i class="fas fa-heart text-red-500"></i>
-                        <span class="text-xs font-semibold text-pink-600">💕 SONG 2 - BONUS LOVE SONG 💕</span>
-                    </div>
-                    <p class="text-sm text-gray-600 mb-2 font-semibold">"Perfect" / Special Love Song</p>
-                    <iframe 
-                        src="https://open.spotify.com/embed/track/5h5CQwgjgQrBUacsqR2zR7?utm_source=generator" 
-                        width="100%" 
-                        height="80" 
-                        frameBorder="0" 
-                        allowfullscreen="" 
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
-                        loading="lazy"
-                        class="rounded-lg">
-                    </iframe>
+                        <span class="text-xs font-semibold text-pink-600">💕 BONUS LOVE SONG 💕</span>
+                    {% endif %}
                 </div>
-            </div>
-            
-            <div class="text-center mt-3">
-                <p class="text-xs text-gray-400">🎧 Click play on any song to start the music</p>
+                <p class="text-sm text-gray-600 mb-2 font-semibold">{{ song.title }}</p>
+                <iframe 
+                    src="{{ song.spotify_embed_url }}" 
+                    width="100%" 
+                    height="80" 
+                    frameBorder="0" 
+                    allowfullscreen="" 
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                    loading="lazy"
+                    class="rounded-lg">
+                </iframe>
             </div>
         </div>
+        {% empty %}
+        <div class="bg-pink-50 rounded-xl p-4 text-center">
+            <p class="text-gray-500">💔 No songs added yet.<br>Go to admin panel to add music!</p>
+        </div>
+        {% endfor %}
+        
+        <div class="text-center mt-3">
+            <p class="text-xs text-gray-400">🎧 Click play on any song to start the music</p>
+        </div>
     </div>
-    
+</div>
     <!-- Main Content Container -->
     <div class="container mx-auto px-4 py-8 relative z-10">
         

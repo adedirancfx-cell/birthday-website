@@ -46,3 +46,21 @@ class PickupLine(models.Model):
     def get_keywords_list(self):
         """Convert comma-separated keywords to a list"""
         return [keyword.strip().lower() for keyword in self.expected_keywords.split(',')]
+
+class Music(models.Model):
+    title = models.CharField(max_length=200, help_text="Song title (e.g., 'Perfect - Ed Sheeran')")
+    spotify_embed_url = models.URLField(help_text="Spotify embed URL (from Share > Embed)")
+    is_active = models.BooleanField(default=True, help_text="Show this song on the website")
+    order = models.IntegerField(default=0, help_text="Display order (1, 2, 3...)")
+    song_type = models.CharField(
+        max_length=20,
+        choices=[('main', 'Main Love Song'), ('bonus', 'Bonus Love Song')],
+        default='bonus'
+    )
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return f"{self.order}. {self.title}"    
+
