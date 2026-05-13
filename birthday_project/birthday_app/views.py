@@ -73,7 +73,7 @@ def birthday_home(request):
         'wishes': wishes,
         'pickup_lines': pickup_lines_data,
         'music_list': music_list,  # Add this
-        'girl_name': 'My Love',
-        'your_name': 'Your Name',
+        'girl_name': 'My Love Faith ♥',
+        'your_name': 'Ezekiel',
     }
     return render(request, 'birthday_app/birthday.html', context)
