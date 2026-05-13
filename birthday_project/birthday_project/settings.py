@@ -85,9 +85,9 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR / 'static'] if (BASE_DIR / 'static').exists() else []
-STATIC_ROOT = BASE_DIR / 'staticfiles'
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS = [BASE_DIR / 'static'] if (BASE_DIR / 'static').exists() else []
+# STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Media files (User uploaded photos)
 MEDIA_URL = '/media/'
@@ -97,21 +97,69 @@ MEDIA_ROOT = BASE_DIR / 'media'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # WhiteNoise static files storage
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Render Deployment Settings
+## ============ RENDER DEPLOYMENT SETTINGS ============
 import dj_database_url
 import os
 
+# Database configuration for Render
 if 'DATABASE_URL' in os.environ:
-    DEBUG = False
-    ALLOWED_HOSTS = ['.onrender.com', 'localhost', '127.0.0.1']
-    
     DATABASES = {
         'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
     }
-    
-    # Static files on Render
-    STATIC_URL = '/static/'
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+else:
+    # Use SQLite for local development
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+
+# Host settings
+ALLOWED_HOSTS = ['*', '.onrender.com', 'localhost', '127.0.0.1']
+
+# Production settings
+if not DEBUG:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+# Static files for production
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+# Media files
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+# ============ TIMEOUT & PERFORMANCE SETTINGS ============
+# These prevent the "upstream request timeout" error on Render
+
+# Gunicorn timeout settings (for production)
+GUNICORN_TIMEOUT = 120
+GUNICORN_WORKERS = 2
+GUNICORN_MAX_REQUESTS = 1000
+
+# File upload timeout
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
+DATA_UPLOAD_MAX_MEMORY_SIZE = 26214400  # 25 MB
+
+# Request timeout (prevents 504 errors)
+REQUEST_TIMEOUT = 120
+
+# Database connection timeout (for PostgreSQL)
+if 'DATABASE_URL' in os.environ:
+    DATABASES['default']['OPTIONS'] = {
+        'connect_timeout': 30,
+        'keepalives': 1,
+        'keepalives_idle': 30,
+        'keepalives_interval': 10,
+        'keepalives_count': 5,
+    }
+
+WHITENOISE_MAX_AGE = 31536000  # Cache for 1 year (good for images, CSS, JS)
+WHITENOISE_IMMUTABLE_FILE = True  # Files won't change
+WHITENOISE_USE_FINDERS = True    
