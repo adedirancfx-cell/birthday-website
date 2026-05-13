@@ -9,9 +9,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-change-this-to-a-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = ['*']
+# ALLOWED_HOSTS - Only ONE definition
+ALLOWED_HOSTS = ['*', '.onrender.com', 'love-you.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -26,7 +27,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # WhiteNoise for static files
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -55,14 +56,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'birthday_project.wsgi.application'
 
-# Database - SQLite for local, PostgreSQL for Railway
+# Database configuration
 if 'DATABASE_URL' in os.environ:
-    # Production database (PostgreSQL on Railway)
     DATABASES = {
-        'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
+        'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
     }
 else:
-    # Local development database (SQLite)
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -85,71 +84,38 @@ USE_I18N = True
 USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
-# STATIC_URL = '/static/'
-# STATICFILES_DIRS = [BASE_DIR / 'static'] if (BASE_DIR / 'static').exists() else []
-# STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Media files (User uploaded photos)
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# WhiteNoise static files storage
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-## ============ RENDER DEPLOYMENT SETTINGS ============
-import dj_database_url
-import os
-
-# Database configuration for Render
-if 'DATABASE_URL' in os.environ:
-    DATABASES = {
-        'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
-    }
-else:
-    # Use SQLite for local development
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
-    }
-
-ALLOWED_HOSTS = ['*', '.onrender.com', 'love-you.onrender.com', 'localhost', '127.0.0.1']
-
-# Production settings
+# ============ PRODUCTION SETTINGS ============
 if not DEBUG:
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
 
-# Static files for production
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-# Media files
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 # ============ TIMEOUT & PERFORMANCE SETTINGS ============
-# These prevent the "upstream request timeout" error on Render
-
-# Gunicorn timeout settings (for production)
 GUNICORN_TIMEOUT = 120
 GUNICORN_WORKERS = 2
 GUNICORN_MAX_REQUESTS = 1000
 
-# File upload timeout
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
-DATA_UPLOAD_MAX_MEMORY_SIZE = 26214400  # 25 MB
-
-# Request timeout (prevents 504 errors)
+DATA_UPLOAD_MAX_MEMORY_SIZE = 26214400
 REQUEST_TIMEOUT = 120
 
-# Database connection timeout (for PostgreSQL)
+# ============ WHITENOISE CACHE SETTINGS ============
+WHITENOISE_MAX_AGE = 31536000
+WHITENOISE_IMMUTABLE_FILE = True
+WHITENOISE_USE_FINDERS = True
+
+# ============ DATABASE CONNECTION SETTINGS ============
 if 'DATABASE_URL' in os.environ:
     DATABASES['default']['OPTIONS'] = {
         'connect_timeout': 30,
@@ -158,7 +124,3 @@ if 'DATABASE_URL' in os.environ:
         'keepalives_interval': 10,
         'keepalives_count': 5,
     }
-
-WHITENOISE_MAX_AGE = 31536000  # Cache for 1 year (good for images, CSS, JS)
-WHITENOISE_IMMUTABLE_FILE = True  # Files won't change
-WHITENOISE_USE_FINDERS = True    
