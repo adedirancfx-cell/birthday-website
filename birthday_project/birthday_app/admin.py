@@ -1,6 +1,7 @@
 from django.contrib import admin
-from .models import Photo, LoveMessage, BirthdayWish, PickupLine,Music
+from .models import Photo, LoveMessage, BirthdayWish, PickupLine, Music
 
+# Your existing admin classes here...
 @admin.register(Photo)
 class PhotoAdmin(admin.ModelAdmin):
     list_display = ['title', 'order', 'is_favorite']

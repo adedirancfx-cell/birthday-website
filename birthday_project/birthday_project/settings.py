@@ -2,17 +2,15 @@ from pathlib import Path
 import os
 import dj_database_url
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-change-this-to-a-secret-key')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-fix-this-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', 'False') == 'True'
+DEBUG = True
 
-# ALLOWED_HOSTS - Only ONE definition
-ALLOWED_HOSTS = ['*', '.onrender.com', 'love-you.onrender.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*', '.onrender.com', 'localhost', '127.0.0.1']
 
 # Application definition
 INSTALLED_APPS = [
@@ -56,10 +54,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'birthday_project.wsgi.application'
 
-# Database configuration
+# Database - Use PostgreSQL on Render, SQLite locally
 if 'DATABASE_URL' in os.environ:
     DATABASES = {
-        'default': dj_database_url.config(default=os.environ['DATABASE_URL'])
+        'default': dj_database_url.config(
+            default=os.environ['DATABASE_URL'],
+            conn_max_age=600,
+            ssl_require=False
+        )
     }
 else:
     DATABASES = {
@@ -88,39 +90,27 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-# Media files (User uploaded photos)
+# Media files
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# ============ PRODUCTION SETTINGS ============
-if not DEBUG:
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-
-# ============ TIMEOUT & PERFORMANCE SETTINGS ============
-GUNICORN_TIMEOUT = 120
-GUNICORN_WORKERS = 2
-GUNICORN_MAX_REQUESTS = 1000
-
-DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000
-DATA_UPLOAD_MAX_MEMORY_SIZE = 26214400
-REQUEST_TIMEOUT = 120
-
-# ============ WHITENOISE CACHE SETTINGS ============
+# WhiteNoise settings
 WHITENOISE_MAX_AGE = 31536000
 WHITENOISE_IMMUTABLE_FILE = True
-WHITENOISE_USE_FINDERS = True
 
-# ============ DATABASE CONNECTION SETTINGS ============
-if 'DATABASE_URL' in os.environ:
-    DATABASES['default']['OPTIONS'] = {
-        'connect_timeout': 30,
-        'keepalives': 1,
-        'keepalives_idle': 30,
-        'keepalives_interval': 10,
-        'keepalives_count': 5,
-    }
+# Logging for debugging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
