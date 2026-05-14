@@ -69,104 +69,120 @@
     
     <div id="heartsContainer"></div>
     
-    <!-- Music Panel -->
-    <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50" id="musicPanelContainer">
-        <div class="absolute -left-12 top-1/2 transform -translate-y-1/2">
-            <button onclick="toggleMusicPanel()" class="bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-l-2xl py-4 px-3 shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 group">
-                <i class="fas fa-music text-xl animate-pulse group-hover:rotate-12 transition-transform"></i>
-                <div class="text-xs mt-1 font-semibold">🎵</div>
-            </button>
-        </div>
-        
-        <div id="musicPanel" class="bg-white/95 backdrop-blur-xl rounded-l-2xl shadow-2xl w-96 overflow-hidden transition-all duration-500 ease-in-out">
-            <div class="p-4">
-                <div class="flex justify-between items-center mb-4 pb-2 border-b border-pink-200">
-                    <div class="flex items-center gap-2">
-                        <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center animate-pulse">
-                            <i class="fas fa-headphones text-white text-sm"></i>
-                        </div>
-                        <div>
-                            <h3 class="font-bold text-gray-800">Birthday Playlist</h3>
-                            <p class="text-xs text-gray-500">✨ Made with love for you</p>
-                        </div>
+   <!-- Music Panel - SIMPLE WORKING VERSION -->
+<div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50" id="musicPanelContainer">
+    <!-- Toggle Button -->
+    <div class="absolute -left-12 top-1/2 transform -translate-y-1/2">
+        <button onclick="toggleMusicPanel()" class="bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-l-2xl py-4 px-3 shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 group">
+            <i class="fas fa-music text-xl animate-pulse group-hover:rotate-12 transition-transform"></i>
+            <div class="text-xs mt-1 font-semibold">🎵</div>
+        </button>
+    </div>
+    
+    <!-- Music Panel Content -->
+    <div id="musicPanel" class="bg-white/95 backdrop-blur-xl rounded-l-2xl shadow-2xl w-96 overflow-hidden transition-all duration-500 ease-in-out">
+        <div class="p-4">
+            <!-- Header -->
+            <div class="flex justify-between items-center mb-4 pb-2 border-b border-pink-200">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center animate-pulse">
+                        <i class="fas fa-headphones text-white text-sm"></i>
                     </div>
-                    <button onclick="toggleMusicPanel()" class="text-gray-400 hover:text-pink-500 transition-all hover:rotate-90">
-                        <i class="fas fa-times text-xl"></i>
+                    <div>
+                        <h3 class="font-bold text-gray-800">Birthday Playlist</h3>
+                        <p class="text-xs text-gray-500">✨ Click play on any song</p>
+                    </div>
+                </div>
+                <button onclick="toggleMusicPanel()" class="text-gray-400 hover:text-pink-500 transition-all hover:rotate-90">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <!-- Now Playing -->
+            <div class="bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-3 mb-4">
+                <div class="flex items-center gap-3">
+                    <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center animate-pulse">
+                        <i class="fas fa-play text-white text-lg"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-xs text-pink-600 font-semibold">🎵 NOW PLAYING</p>
+                        <p class="text-sm font-bold text-gray-800" id="nowPlayingTitle">Select a song</p>
+                        <p class="text-xs text-gray-500" id="nowPlayingArtist">❤️ Click play on any song</p>
+                    </div>
+                    <button onclick="playRandomSong()" class="bg-pink-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-pink-600 transition">
+                        <i class="fas fa-random text-sm"></i>
                     </button>
                 </div>
-                
-                <div class="bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-3 mb-4">
-                    <div class="flex items-center gap-3">
-                        <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center animate-pulse">
-                            <i class="fas fa-play text-white text-lg"></i>
-                        </div>
-                        <div class="flex-1">
-                            <p class="text-xs text-pink-600 font-semibold">🎵 NOW PLAYING</p>
-                            <p class="text-sm font-bold text-gray-800" id="nowPlayingTitle">Click a song to play</p>
-                            <p class="text-xs text-gray-500" id="nowPlayingArtist">❤️ Choose your favorite</p>
-                        </div>
-                        <button onclick="playRandomSong()" class="bg-pink-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-pink-600 transition">
-                            <i class="fas fa-random text-sm"></i>
-                        </button>
-                    </div>
+            </div>
+            
+            <!-- Auto-Play Toggle -->
+            <div class="flex items-center justify-between mb-4 px-2">
+                <div class="flex items-center gap-2">
+                    <i class="fas fa-magic text-pink-400 text-sm"></i>
+                    <span class="text-xs text-gray-600">Auto-play random songs</span>
                 </div>
-                
-                <div class="flex items-center justify-between mb-4 px-2">
-                    <div class="flex items-center gap-2">
-                        <i class="fas fa-magic text-pink-400 text-sm"></i>
-                        <span class="text-xs text-gray-600">Auto-play random songs</span>
-                    </div>
-                    <label class="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" id="autoPlayToggle" class="sr-only peer" checked>
-                        <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-pink-500 transition-all duration-300"></div>
-                        <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 peer-checked:translate-x-5"></div>
-                    </label>
-                </div>
-                
-                <div class="space-y-3 max-h-80 overflow-y-auto pr-1 custom-scroll" id="songsList">
-                    {% for song in music_list %}
-                    <div class="music-card bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl p-3 hover:shadow-lg transition-all duration-300 cursor-pointer" 
-                         data-song-id="{{ forloop.counter0 }}" 
-                         data-song-url="{{ song.spotify_embed_url }}" 
-                         data-song-title="{{ song.title }}" 
-                         data-song-type="{{ song.song_type }}" 
-                         onclick="playSong(this)">
-                        <div class="flex items-start gap-3">
-                            <div class="flex-shrink-0">
-                                <div class="w-10 h-10 bg-gradient-to-r from-pink-400 to-pink-600 rounded-lg flex items-center justify-center">
-                                    {% if song.song_type == 'main' %}
-                                        <i class="fas fa-crown text-yellow-300 text-lg"></i>
-                                    {% else %}
-                                        <i class="fas fa-heart text-pink-200 text-lg"></i>
-                                    {% endif %}
-                                </div>
+                <label class="relative inline-flex items-center cursor-pointer">
+                    <input type="checkbox" id="autoPlayToggle" class="sr-only peer" checked>
+                    <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-pink-500 transition-all duration-300"></div>
+                    <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 peer-checked:translate-x-5"></div>
+                </label>
+            </div>
+            
+            <!-- Songs List with Spotify Players -->
+            <div class="space-y-3 max-h-80 overflow-y-auto pr-1 custom-scroll" id="songsList">
+                {% for song in music_list %}
+                <div class="music-card bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl p-3 hover:shadow-lg transition-all duration-300" 
+                     data-song-id="{{ forloop.counter0 }}" 
+                     data-song-title="{{ song.title }}">
+                    
+                    <div class="flex items-start gap-3">
+                        <div class="flex-shrink-0">
+                            <div class="w-10 h-10 bg-gradient-to-r from-pink-400 to-pink-600 rounded-lg flex items-center justify-center">
+                                {% if song.song_type == 'main' %}
+                                    <i class="fas fa-crown text-yellow-300 text-lg"></i>
+                                {% else %}
+                                    <i class="fas fa-heart text-pink-200 text-lg"></i>
+                                {% endif %}
                             </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-semibold text-gray-800 truncate">{{ song.title }}</p>
-                                <p class="text-xs text-pink-500 mt-0.5">
-                                    {% if song.song_type == 'main' %}❤️ Main Love Song{% else %}💕 Bonus Track{% endif %}
-                                </p>
-                            </div>
-                            <div class="flex-shrink-0">
-                                <i class="fas fa-play-circle text-pink-400 text-xl"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <p class="text-sm font-semibold text-gray-800 truncate">{{ song.title }}</p>
+                            <p class="text-xs text-pink-500 mt-0.5">
+                                {% if song.song_type == 'main' %}❤️ Main Love Song{% else %}💕 Bonus Track{% endif %}
+                            </p>
+                            <!-- Spotify Player - CLICK THE PLAY BUTTON HERE -->
+                            <div class="mt-2">
+                                <iframe 
+                                    src="{{ song.spotify_embed_url }}"
+                                    width="100%" 
+                                    height="80" 
+                                    frameBorder="0" 
+                                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+                                    allowfullscreen
+                                    class="rounded-lg">
+                                </iframe>
                             </div>
                         </div>
                     </div>
-                    {% empty %}
-                    <div class="text-center py-8">
-                        <i class="fas fa-music-slash text-4xl text-gray-300 mb-2"></i>
-                        <p class="text-gray-400">No songs added yet.</p>
-                        <p class="text-xs text-gray-400 mt-1">Go to admin panel to add music!</p>
-                    </div>
-                    {% endfor %}
                 </div>
-                
-                <div class="mt-4 pt-3 border-t border-pink-100 text-center">
-                    <p class="text-xs text-gray-400"><i class="fas fa-random"></i> Random auto-play | <i class="fas fa-heart"></i> Made for you</p>
+                {% empty %}
+                <div class="text-center py-8">
+                    <i class="fas fa-music-slash text-4xl text-gray-300 mb-2"></i>
+                    <p class="text-gray-400">No songs added yet.</p>
+                    <p class="text-xs text-gray-400 mt-1">Go to admin panel to add music!</p>
                 </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Footer -->
+            <div class="mt-4 pt-3 border-t border-pink-100 text-center">
+                <p class="text-xs text-gray-400">
+                    <i class="fas fa-play-circle"></i> Click the PLAY button on any song
+                </p>
             </div>
         </div>
     </div>
+</div>
     
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-8 relative z-10">
@@ -380,119 +396,95 @@
     </div>
 
     <script>
-        // ==================== MUSIC PLAYER - FIXED VERSION ====================
-        let songs = [];
-        let currentSongIndex = 0;
-        let isAutoPlayEnabled = true;
-        let activeIframes = {};
-        
-        function loadSongs() {
-            const songCards = document.querySelectorAll('.music-card');
-            songs = [];
-            songCards.forEach((card, index) => {
-                const songUrl = card.getAttribute('data-song-url');
-                const songTitle = card.getAttribute('data-song-title');
-                if (songUrl && songTitle) {
-                    songs.push({ id: index, url: songUrl, title: songTitle, element: card });
-                }
-            });
-            console.log(`✅ Loaded ${songs.length} songs`);
-            if (document.getElementById('totalQNum')) {
-                document.getElementById('totalQNum').textContent = songs.length || 3;
-            }
+      // ==================== SIMPLE MUSIC PLAYER ====================
+let songs = [];
+let currentSongIndex = 0;
+let isAutoPlayEnabled = true;
+
+function loadSongs() {
+    const iframes = document.querySelectorAll('.music-card iframe');
+    songs = [];
+    iframes.forEach((iframe, index) => {
+        const card = iframe.closest('.music-card');
+        const title = card.querySelector('.text-sm.font-semibold')?.textContent || 'Love Song';
+        songs.push({
+            id: index,
+            title: title,
+            iframe: iframe
+        });
+    });
+    console.log(`✅ Loaded ${songs.length} songs`);
+    if (document.getElementById('totalQNum')) {
+        document.getElementById('totalQNum').textContent = songs.length || 3;
+    }
+}
+
+function highlightCurrentSong(index) {
+    document.querySelectorAll('.music-card').forEach(card => {
+        card.classList.remove('ring-2', 'ring-pink-500', 'bg-pink-100');
+    });
+    if (songs[index] && songs[index].iframe) {
+        const card = songs[index].iframe.closest('.music-card');
+        card.classList.add('ring-2', 'ring-pink-500', 'bg-pink-100');
+    }
+}
+
+function playSong(index) {
+    if (!songs[index]) return;
+    currentSongIndex = index;
+    document.getElementById('nowPlayingTitle').textContent = songs[index].title;
+    document.getElementById('nowPlayingArtist').innerHTML = '❤️ Playing now';
+    highlightCurrentSong(index);
+    
+    // Reload iframe to start playing
+    const iframe = songs[index].iframe;
+    const src = iframe.src;
+    iframe.src = '';
+    iframe.src = src;
+    
+    console.log(`🎵 Now playing: ${songs[index].title}`);
+}
+
+function playRandomSong() {
+    if (songs.length === 0) return;
+    let randomIndex = Math.floor(Math.random() * songs.length);
+    if (songs.length > 1 && randomIndex === currentSongIndex) {
+        randomIndex = (randomIndex + 1) % songs.length;
+    }
+    playSong(randomIndex);
+    
+    Swal.fire({
+        title: '🎵 Now Playing',
+        text: songs[randomIndex].title,
+        icon: 'success',
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 2000
+    });
+}
+
+function initMusicPlayer() {
+    loadSongs();
+    const autoPlayToggle = document.getElementById('autoPlayToggle');
+    if (autoPlayToggle) {
+        autoPlayToggle.addEventListener('change', function() {
+            isAutoPlayEnabled = this.checked;
+        });
+    }
+    // Auto-start first song after 2 seconds
+    setTimeout(() => {
+        if (songs.length > 0 && isAutoPlayEnabled) {
+            playSong(0);
         }
-        
-        function playSong(element) {
-            const songUrl = element.getAttribute('data-song-url');
-            const songTitle = element.getAttribute('data-song-title');
-            const songId = element.getAttribute('data-song-id');
-            
-            if (!songUrl) {
-                console.error('No song URL found');
-                return;
-            }
-            
-            // Update now playing display
-            document.getElementById('nowPlayingTitle').textContent = songTitle || 'Love Song';
-            document.getElementById('nowPlayingArtist').innerHTML = '❤️ Playing now';
-            
-            // Remove existing iframe from this song card if present
-            const existingIframe = element.querySelector('.song-iframe');
-            if (existingIframe) {
-                existingIframe.remove();
-            }
-            
-            // Create new visible iframe
-            const iframe = document.createElement('iframe');
-            iframe.className = 'song-iframe w-full rounded-lg mt-2';
-            iframe.src = songUrl;
-            iframe.height = '80';
-            iframe.frameBorder = '0';
-            iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-            iframe.allowFullscreen = true;
-            
-            // Add iframe to the song card
-            const flexDiv = element.querySelector('.flex-1.min-w-0');
-            if (flexDiv) {
-                flexDiv.appendChild(iframe);
-            }
-            
-            // Highlight current song
-            document.querySelectorAll('.music-card').forEach(card => {
-                card.classList.remove('ring-2', 'ring-pink-500', 'bg-pink-100');
-            });
-            element.classList.add('ring-2', 'ring-pink-500', 'bg-pink-100');
-            
-            // Scroll iframe into view
-            setTimeout(() => iframe.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
-            
-            currentSongIndex = parseInt(songId);
-            console.log(`🎵 Now playing: ${songTitle}`);
-        }
-        
-        function playRandomSong() {
-            if (songs.length === 0) {
-                console.log('No songs available');
-                return;
-            }
-            let randomIndex = Math.floor(Math.random() * songs.length);
-            if (songs.length > 1 && randomIndex === currentSongIndex) {
-                randomIndex = (randomIndex + 1) % songs.length;
-            }
-            if (songs[randomIndex] && songs[randomIndex].element) {
-                playSong(songs[randomIndex].element);
-                currentSongIndex = randomIndex;
-                
-                Swal.fire({
-                    title: '🎵 Now Playing',
-                    text: songs[randomIndex].title,
-                    icon: 'success',
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 2000,
-                    background: 'linear-gradient(135deg, #ffe6f0, #ffb6c1)'
-                });
-            }
-        }
-        
-        function initMusicPlayer() {
-            loadSongs();
-            const autoPlayToggle = document.getElementById('autoPlayToggle');
-            if (autoPlayToggle) {
-                autoPlayToggle.addEventListener('change', function() {
-                    isAutoPlayEnabled = this.checked;
-                });
-            }
-            // Auto-start random song after 2 seconds
-            setTimeout(() => {
-                if (songs.length > 0 && isAutoPlayEnabled) {
-                    playRandomSong();
-                }
-            }, 2000);
-        }
-        
-        // ==================== MUSIC PANEL TOGGLE ====================
+    }, 2000);
+}
+
+// Start music player when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initMusicPlayer();
+});
+// ==================== MUSIC PANEL TOGGLE ====================
         function toggleMusicPanel() {
             const panel = document.getElementById('musicPanel');
             if (panel.classList.contains('hidden')) {
