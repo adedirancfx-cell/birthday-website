@@ -115,18 +115,7 @@
                 </div>
             </div>
             
-            <!-- Auto-Play Toggle -->
-            <div class="flex items-center justify-between mb-4 px-2">
-                <div class="flex items-center gap-2">
-                    <i class="fas fa-magic text-pink-400 text-sm"></i>
-                    <span class="text-xs text-gray-600">Auto-play random songs</span>
-                </div>
-                <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" id="autoPlayToggle" class="sr-only peer" checked>
-                    <div class="w-11 h-6 bg-gray-300 rounded-full peer peer-checked:bg-pink-500 transition-all duration-300"></div>
-                    <div class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 peer-checked:translate-x-5"></div>
-                </label>
-            </div>
+      
             
             <!-- Songs List with Spotify Players -->
             <div class="space-y-3 max-h-80 overflow-y-auto pr-1 custom-scroll" id="songsList">
@@ -396,10 +385,9 @@
     </div>
 
     <script>
-      // ==================== SIMPLE MUSIC PLAYER ====================
+// ==================== SIMPLE MUSIC PLAYER (NO AUTO-PLAY) ====================
 let songs = [];
 let currentSongIndex = 0;
-let isAutoPlayEnabled = true;
 
 function loadSongs() {
     const iframes = document.querySelectorAll('.music-card iframe');
@@ -414,9 +402,6 @@ function loadSongs() {
         });
     });
     console.log(`✅ Loaded ${songs.length} songs`);
-    if (document.getElementById('totalQNum')) {
-        document.getElementById('totalQNum').textContent = songs.length || 3;
-    }
 }
 
 function highlightCurrentSong(index) {
@@ -433,16 +418,13 @@ function playSong(index) {
     if (!songs[index]) return;
     currentSongIndex = index;
     document.getElementById('nowPlayingTitle').textContent = songs[index].title;
-    document.getElementById('nowPlayingArtist').innerHTML = '❤️ Playing now';
+    document.getElementById('nowPlayingArtist').innerHTML = '❤️ Click play on the Spotify player';
     highlightCurrentSong(index);
     
-    // Reload iframe to start playing
-    const iframe = songs[index].iframe;
-    const src = iframe.src;
-    iframe.src = '';
-    iframe.src = src;
+    // Scroll to the song
+    songs[index].iframe.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     
-    console.log(`🎵 Now playing: ${songs[index].title}`);
+    console.log(`🎵 Selected: ${songs[index].title}`);
 }
 
 function playRandomSong() {
@@ -453,8 +435,11 @@ function playRandomSong() {
     }
     playSong(randomIndex);
     
+    // Scroll to make it visible
+    songs[randomIndex].iframe.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    
     Swal.fire({
-        title: '🎵 Now Playing',
+        title: '🎵 Song Selected',
         text: songs[randomIndex].title,
         icon: 'success',
         toast: true,
@@ -466,35 +451,29 @@ function playRandomSong() {
 
 function initMusicPlayer() {
     loadSongs();
-    const autoPlayToggle = document.getElementById('autoPlayToggle');
-    if (autoPlayToggle) {
-        autoPlayToggle.addEventListener('change', function() {
-            isAutoPlayEnabled = this.checked;
-        });
+    // Just load songs, NO auto-play
+    if (songs.length > 0) {
+        document.getElementById('nowPlayingTitle').textContent = 'Select a song';
+        document.getElementById('nowPlayingArtist').innerHTML = '❤️ Click play on any Spotify player';
     }
-    // Auto-start first song after 2 seconds
-    setTimeout(() => {
-        if (songs.length > 0 && isAutoPlayEnabled) {
-            playSong(0);
-        }
-    }, 2000);
 }
 
 // Start music player when page loads
 document.addEventListener('DOMContentLoaded', function() {
     initMusicPlayer();
 });
+
 // ==================== MUSIC PANEL TOGGLE ====================
-        function toggleMusicPanel() {
-            const panel = document.getElementById('musicPanel');
-            if (panel.classList.contains('hidden')) {
-                panel.classList.remove('hidden');
-                panel.style.transform = 'translateX(0)';
-            } else {
-                panel.classList.add('hidden');
-                panel.style.transform = 'translateX(100%)';
-            }
-        }
+function toggleMusicPanel() {
+    const panel = document.getElementById('musicPanel');
+    if (panel.classList.contains('hidden')) {
+        panel.classList.remove('hidden');
+        panel.style.transform = 'translateX(0)';
+    } else {
+        panel.classList.add('hidden');
+        panel.style.transform = 'translateX(100%)';
+    }
+}
         
         // ==================== FLOATING HEARTS ====================
         function createHeart() {
