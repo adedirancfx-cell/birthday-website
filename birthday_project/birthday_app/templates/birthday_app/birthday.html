@@ -8,173 +8,69 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Sweet Alert for better UI -->
+    <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
-    <!-- Font Awesome for icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        /* Animations */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-20px) rotate(5deg); }
-        }
-        
-        @keyframes floatReverse {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(-5deg); }
-        }
-        
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff1493; }
-            50% { text-shadow: 0 0 30px #ff1493, 0 0 40px #ff69b4; }
-        }
-        
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-100px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(100px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        @keyframes bounceIn {
-            0% { opacity: 0; transform: scale(0.3); }
-            50% { opacity: 1; transform: scale(1.05); }
-            70% { transform: scale(0.95); }
-            100% { transform: scale(1); }
-        }
-        
-        @keyframes rotateIn {
-            from { opacity: 0; transform: rotate(-180deg) scale(0); }
-            to { opacity: 1; transform: rotate(0) scale(1); }
-        }
-        
-        @keyframes floatingHearts {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
-        }
-        
-        @keyframes floatingHearts2 {
-            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-100px) translateX(-100px) rotate(-360deg); opacity: 0; }
-        }
-        
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        
-        @keyframes floatUp {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-500px) rotate(360deg); opacity: 0; }
-        }
+        @keyframes float { 0%,100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-20px) rotate(5deg); } }
+        @keyframes floatReverse { 0%,100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-15px) rotate(-5deg); } }
+        @keyframes glow { 0%,100% { text-shadow: 0 0 10px #ff69b4,0 0 20px #ff1493; } 50% { text-shadow: 0 0 30px #ff1493,0 0 40px #ff69b4; } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-100px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(100px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { opacity: 1; transform: scale(1.05); } 100% { transform: scale(1); } }
+        @keyframes floatingHearts { 0% { transform: translateY(100vh) rotate(0deg); opacity: 1; } 100% { transform: translateY(-100px) rotate(360deg); opacity: 0; } }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes floatUp { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-500px) rotate(360deg); opacity: 0; } }
 
-        /* Utility Classes */
         .animate-float { animation: float 3s ease-in-out infinite; }
-        .animate-float-reverse { animation: floatReverse 3.5s ease-in-out infinite; }
         .animate-glow { animation: glow 2s ease-in-out infinite; }
         .animate-slide-left { animation: slideInLeft 0.8s ease-out; }
         .animate-slide-right { animation: slideInRight 0.8s ease-out; }
         .animate-bounce-in { animation: bounceIn 0.8s ease-out; }
-        .animate-rotate-in { animation: rotateIn 0.6s ease-out; }
         
-        /* Floating Hearts */
-        .floating-heart {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            animation: floatingHearts 6s ease-in forwards;
-        }
+        .floating-heart { position: fixed; pointer-events: none; z-index: 9999; animation: floatingHearts 6s ease-in forwards; }
+        .photo-card { transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55); }
+        .photo-card:hover { transform: translateY(-15px) scale(1.05) rotate(1deg); box-shadow: 0 30px 50px rgba(255,105,180,0.4); }
         
-        .floating-heart-2 {
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            animation: floatingHearts2 7s ease-in forwards;
-        }
+        .music-card { cursor: pointer; transition: all 0.3s ease; }
+        .music-card:hover { transform: translateX(-5px); background: linear-gradient(135deg, #ffe6f0, #ffb6c1) !important; }
         
-        /* Photo Cards */
-        .photo-card {
-            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
+        .bg-gradient-sweet { background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #ff69b4 50%, #ff1493 75%, #667eea 100%); background-size: 400% 400%; animation: gradientBG 15s ease infinite; }
         
-        .photo-card:hover {
-            transform: translateY(-15px) scale(1.05) rotate(1deg);
-            box-shadow: 0 30px 50px rgba(255, 105, 180, 0.4);
-        }
+        .wish-item { transition: all 0.3s ease; }
+        .wish-item:hover { transform: translateX(10px); background: linear-gradient(90deg, #fff0f5, #ffe6f0); }
         
-        /* Music Card */
-        .music-card {
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-        
-        .music-card:hover {
-            transform: translateX(-5px);
-            background: linear-gradient(135deg, #ffe6f0, #ffb6c1) !important;
-        }
-        
-        /* Background Gradient */
-        .bg-gradient-sweet {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #ff69b4 50%, #ff1493 75%, #667eea 100%);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
-        }
-        
-        /* Wish Items */
-        .wish-item {
-            transition: all 0.3s ease;
-        }
-        
-        .wish-item:hover {
-            transform: translateX(10px);
-            background: linear-gradient(90deg, #fff0f5, #ffe6f0);
-        }
-        
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 10px; }
         ::-webkit-scrollbar-track { background: #ffe6f0; border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #ff69b4, #ff1493); border-radius: 10px; }
+        
         .custom-scroll::-webkit-scrollbar { width: 4px; }
         .custom-scroll::-webkit-scrollbar-track { background: #fce4ec; border-radius: 10px; }
         .custom-scroll::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #ff69b4, #ff1493); border-radius: 10px; }
         
-        /* Music Panel */
-        #musicPanel {
-            transform: translateX(0);
-            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        #musicPanel.hidden {
-            transform: translateX(100%);
-        }
+        #musicPanel { transform: translateX(0); transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); }
+        #musicPanel.hidden { transform: translateX(100%); }
         
         .hint-message { transition: all 0.3s ease; }
         .hint-message:hover { color: #ff69b4 !important; transform: scale(1.05); }
+        
+        .song-iframe { margin-top: 12px; border-radius: 12px; }
     </style>
 </head>
 <body class="bg-gradient-sweet min-h-screen overflow-x-hidden">
     
-    <!-- Floating Hearts Container -->
     <div id="heartsContainer"></div>
     
-    <!-- Music Panel with Random Auto-Play -->
+    <!-- Music Panel -->
     <div class="fixed right-0 top-1/2 transform -translate-y-1/2 z-50" id="musicPanelContainer">
-        <!-- Toggle Button -->
         <div class="absolute -left-12 top-1/2 transform -translate-y-1/2">
             <button onclick="toggleMusicPanel()" class="bg-gradient-to-r from-pink-500 to-pink-600 text-white rounded-l-2xl py-4 px-3 shadow-2xl hover:shadow-pink-500/50 transition-all duration-300 group">
                 <i class="fas fa-music text-xl animate-pulse group-hover:rotate-12 transition-transform"></i>
@@ -182,10 +78,8 @@
             </button>
         </div>
         
-        <!-- Music Panel Content -->
         <div id="musicPanel" class="bg-white/95 backdrop-blur-xl rounded-l-2xl shadow-2xl w-96 overflow-hidden transition-all duration-500 ease-in-out">
             <div class="p-4">
-                <!-- Header -->
                 <div class="flex justify-between items-center mb-4 pb-2 border-b border-pink-200">
                     <div class="flex items-center gap-2">
                         <div class="w-8 h-8 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center animate-pulse">
@@ -193,7 +87,7 @@
                         </div>
                         <div>
                             <h3 class="font-bold text-gray-800">Birthday Playlist</h3>
-                            <p class="text-xs text-gray-500">✨ Random love songs for you</p>
+                            <p class="text-xs text-gray-500">✨ Made with love for you</p>
                         </div>
                     </div>
                     <button onclick="toggleMusicPanel()" class="text-gray-400 hover:text-pink-500 transition-all hover:rotate-90">
@@ -201,7 +95,6 @@
                     </button>
                 </div>
                 
-                <!-- Now Playing Section -->
                 <div class="bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-3 mb-4">
                     <div class="flex items-center gap-3">
                         <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-pink-600 rounded-full flex items-center justify-center animate-pulse">
@@ -209,8 +102,8 @@
                         </div>
                         <div class="flex-1">
                             <p class="text-xs text-pink-600 font-semibold">🎵 NOW PLAYING</p>
-                            <p class="text-sm font-bold text-gray-800" id="nowPlayingTitle">Select a song</p>
-                            <p class="text-xs text-gray-500" id="nowPlayingArtist">❤️ Random love songs</p>
+                            <p class="text-sm font-bold text-gray-800" id="nowPlayingTitle">Click a song to play</p>
+                            <p class="text-xs text-gray-500" id="nowPlayingArtist">❤️ Choose your favorite</p>
                         </div>
                         <button onclick="playRandomSong()" class="bg-pink-500 text-white rounded-full w-8 h-8 flex items-center justify-center hover:bg-pink-600 transition">
                             <i class="fas fa-random text-sm"></i>
@@ -218,7 +111,6 @@
                     </div>
                 </div>
                 
-                <!-- Auto-Play Toggle -->
                 <div class="flex items-center justify-between mb-4 px-2">
                     <div class="flex items-center gap-2">
                         <i class="fas fa-magic text-pink-400 text-sm"></i>
@@ -231,10 +123,14 @@
                     </label>
                 </div>
                 
-                <!-- Songs List -->
                 <div class="space-y-3 max-h-80 overflow-y-auto pr-1 custom-scroll" id="songsList">
                     {% for song in music_list %}
-                    <div class="music-card bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl p-3 hover:shadow-lg transition-all duration-300" data-song-id="{{ forloop.counter0 }}" data-song-url="{{ song.spotify_embed_url }}" data-song-title="{{ song.title }}" data-song-type="{{ song.song_type }}" onclick="playSong(this)">
+                    <div class="music-card bg-gradient-to-r from-pink-50 to-purple-50 rounded-xl p-3 hover:shadow-lg transition-all duration-300 cursor-pointer" 
+                         data-song-id="{{ forloop.counter0 }}" 
+                         data-song-url="{{ song.spotify_embed_url }}" 
+                         data-song-title="{{ song.title }}" 
+                         data-song-type="{{ song.song_type }}" 
+                         onclick="playSong(this)">
                         <div class="flex items-start gap-3">
                             <div class="flex-shrink-0">
                                 <div class="w-10 h-10 bg-gradient-to-r from-pink-400 to-pink-600 rounded-lg flex items-center justify-center">
@@ -265,17 +161,14 @@
                     {% endfor %}
                 </div>
                 
-                <!-- Footer -->
                 <div class="mt-4 pt-3 border-t border-pink-100 text-center">
-                    <p class="text-xs text-gray-400">
-                        <i class="fas fa-random"></i> Random auto-play | <i class="fas fa-heart"></i> Made for you
-                    </p>
+                    <p class="text-xs text-gray-400"><i class="fas fa-random"></i> Random auto-play | <i class="fas fa-heart"></i> Made for you</p>
                 </div>
             </div>
         </div>
     </div>
     
-    <!-- Main Content Container -->
+    <!-- Main Content -->
     <div class="container mx-auto px-4 py-8 relative z-10">
         
         <!-- Hero Section -->
@@ -307,9 +200,6 @@
                 <div class="bg-white/20 backdrop-blur rounded-full px-6 py-2 text-white animate-float">
                     <i class="fas fa-calendar-alt"></i> Your Special Day
                 </div>
-                <div class="bg-white/20 backdrop-blur rounded-full px-6 py-2 text-white animate-float-reverse">
-                    <i class="fas fa-clock"></i> Celebrating You
-                </div>
                 <div class="bg-white/20 backdrop-blur rounded-full px-6 py-2 text-white animate-float">
                     <i class="fas fa-gift"></i> Made With Love
                 </div>
@@ -323,18 +213,15 @@
                     <i class="fas fa-envelope-open-text text-pink-500 text-6xl animate-float"></i>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-bold text-center text-pink-600 mb-6" style="font-family: 'Dancing Script', cursive;">
-                    💌 To My Dearest {{ girl_name }} 💌
+                    💌 To My Dearest, {{ girl_name }} 💌
                 </h2>
                 {% if love_message %}
-                    <div class="text-gray-700 text-lg leading-relaxed space-y-4">
-                        {{ love_message.message|linebreaks }}
-                    </div>
+                    <div class="text-gray-700 text-lg leading-relaxed space-y-4">{{ love_message.message|linebreaks }}</div>
                 {% else %}
                     <div class="text-gray-700 text-lg md:text-xl leading-relaxed space-y-4 text-center">
                         <p class="italic">"I have died every day waiting for you<br>Darling, don't be afraid, I have loved you<br>For a thousand years<br>I'll love you for a thousand more"</p>
                         <div class="border-t-2 border-pink-200 my-6"></div>
                         <p>Every day with you feels like a beautiful dream. Your smile lights up my darkest days, your laugh is my favorite melody, and your love is the greatest gift I've ever received.</p>
-                        <p>On your birthday, I want you to know that you're not just my girlfriend - you're my best friend, my soulmate, and my everything. Every moment with you is precious, and I cherish every second we spend together.</p>
                         <p class="font-semibold text-pink-600">You are my today and all of my tomorrows. I love you more than a thousand years could ever express.</p>
                     </div>
                 {% endif %}
@@ -355,8 +242,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {% for photo in photos %}
                 <div class="photo-card bg-white rounded-3xl overflow-hidden shadow-2xl cursor-pointer transform transition-all group" 
-                     onclick="showPhotoModal('{{ photo.image.url }}', '{{ photo.caption }}')"
-                     style="animation: bounceIn 0.6s ease-out {{ forloop.counter0 }}s both">
+                     onclick="showPhotoModal('{{ photo.image.url }}', '{{ photo.caption }}')">
                     <div class="relative overflow-hidden">
                         <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="w-full h-96 object-cover transition-transform duration-500 group-hover:scale-110">
                         {% if photo.is_favorite %}
@@ -364,7 +250,6 @@
                             <i class="fas fa-star"></i> Favorite
                         </div>
                         {% endif %}
-                        <div class="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity"></div>
                     </div>
                     <div class="p-5 text-center bg-white">
                         <i class="fas fa-heart text-pink-400 text-sm"></i>
@@ -388,24 +273,12 @@
                     <i class="fas fa-hourglass-half"></i> Celebrating Your Special Day!
                 </h3>
                 <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
-                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white transform hover:scale-105 transition-all">
-                        <div class="text-5xl md:text-6xl font-bold" id="days">0</div>
-                        <div class="text-sm mt-2 uppercase tracking-wider">Days</div>
-                    </div>
-                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white transform hover:scale-105 transition-all">
-                        <div class="text-5xl md:text-6xl font-bold" id="hours">0</div>
-                        <div class="text-sm mt-2 uppercase tracking-wider">Hours</div>
-                    </div>
-                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white transform hover:scale-105 transition-all">
-                        <div class="text-5xl md:text-6xl font-bold" id="minutes">0</div>
-                        <div class="text-sm mt-2 uppercase tracking-wider">Minutes</div>
-                    </div>
-                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white transform hover:scale-105 transition-all">
-                        <div class="text-5xl md:text-6xl font-bold" id="seconds">0</div>
-                        <div class="text-sm mt-2 uppercase tracking-wider">Seconds</div>
-                    </div>
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white"><div class="text-5xl md:text-6xl font-bold" id="days">0</div><div class="text-sm mt-2 uppercase">Days</div></div>
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white"><div class="text-5xl md:text-6xl font-bold" id="hours">0</div><div class="text-sm mt-2 uppercase">Hours</div></div>
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white"><div class="text-5xl md:text-6xl font-bold" id="minutes">0</div><div class="text-sm mt-2 uppercase">Minutes</div></div>
+                    <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-2xl p-5 text-white"><div class="text-5xl md:text-6xl font-bold" id="seconds">0</div><div class="text-sm mt-2 uppercase">Seconds</div></div>
                 </div>
-                <p class="text-gray-600 mt-8 text-lg">✨ Every second with you is a treasure ✨</p>
+                <div id="countdownMessage" class="text-pink-200 font-semibold mt-6 text-lg"></div>
             </div>
         </div>
         
@@ -415,19 +288,17 @@
                 <h2 class="text-4xl md:text-5xl font-bold text-center text-pink-600 mb-6" style="font-family: 'Dancing Script', cursive;">
                     <i class="fas fa-comment-dots"></i> Birthday Wishes Wall
                 </h2>
-                <form method="POST" class="mb-8 space-y-4" id="wishForm">
+                <form method="POST" class="mb-8 space-y-4">
                     {% csrf_token %}
                     <div class="relative">
                         <i class="fas fa-user absolute left-4 top-4 text-pink-400"></i>
-                        <input type="text" name="name" placeholder="Your name" required
-                               class="w-full pl-12 pr-4 py-3 border-2 border-pink-200 rounded-xl focus:outline-none focus:border-pink-500 transition-all">
+                        <input type="text" name="name" placeholder="Your name" required class="w-full pl-12 pr-4 py-3 border-2 border-pink-200 rounded-xl focus:outline-none focus:border-pink-500">
                     </div>
                     <div class="relative">
                         <i class="fas fa-pencil-alt absolute left-4 top-4 text-pink-400"></i>
-                        <textarea name="message" rows="3" placeholder="Write your birthday wish for {{ girl_name }}..." required
-                                  class="w-full pl-12 pr-4 py-3 border-2 border-pink-200 rounded-xl focus:outline-none focus:border-pink-500 transition-all"></textarea>
+                        <textarea name="message" rows="3" placeholder="Write your birthday wish for {{ girl_name }}..." required class="w-full pl-12 pr-4 py-3 border-2 border-pink-200 rounded-xl focus:outline-none focus:border-pink-500"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    <button type="submit" class="w-full bg-gradient-to-r from-pink-500 to-pink-600 text-white py-4 rounded-xl font-semibold text-lg hover:shadow-2xl transform hover:scale-105 transition-all">
                         <i class="fas fa-paper-plane"></i> Send Your Love 💕
                     </button>
                 </form>
@@ -435,129 +306,67 @@
                     {% for wish in wishes %}
                     <div class="wish-item bg-gradient-to-r from-pink-50 to-pink-100 rounded-xl p-4 transform transition-all hover:shadow-lg">
                         <div class="flex items-center gap-2 mb-2">
-                            <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-sm font-bold">
-                                {{ wish.name|first|upper }}
-                            </div>
+                            <div class="w-8 h-8 bg-pink-500 rounded-full flex items-center justify-center text-white text-sm font-bold">{{ wish.name|first|upper }}</div>
                             <span class="font-bold text-pink-700">{{ wish.name }}</span>
                             <span class="text-xs text-gray-500 ml-auto">{{ wish.created_at|date:"F j, Y \a\t g:i A" }}</span>
                         </div>
                         <p class="text-gray-700 ml-10">{{ wish.message }}</p>
-                        <div class="ml-10 mt-2">
-                            <i class="fas fa-heart text-pink-300 text-xs"></i>
-                            <i class="fas fa-heart text-pink-300 text-xs"></i>
-                            <i class="fas fa-heart text-pink-300 text-xs"></i>
-                        </div>
+                        <div class="ml-10 mt-2"><i class="fas fa-heart text-pink-300 text-xs"></i> <i class="fas fa-heart text-pink-300 text-xs"></i> <i class="fas fa-heart text-pink-300 text-xs"></i></div>
                     </div>
                     {% empty %}
-                    <div class="text-center text-gray-500 py-12">
-                        <i class="fas fa-comment fa-4x mb-3 text-pink-300"></i>
-                        <p class="text-lg">Be the first to leave a birthday wish! 🎂</p>
-                    </div>
+                    <div class="text-center text-gray-500 py-12"><i class="fas fa-comment fa-4x mb-3 text-pink-300"></i><p class="text-lg">Be the first to leave a birthday wish! 🎂</p></div>
                     {% endfor %}
                 </div>
             </div>
         </div>
         
-        <!-- Romantic Quote Section -->
-        <div class="max-w-3xl mx-auto mb-16 animate-rotate-in">
+        <!-- Romantic Quote -->
+        <div class="max-w-3xl mx-auto mb-16 animate-float">
             <div class="bg-white/20 backdrop-blur rounded-3xl p-8 text-center border-2 border-white/30">
                 <i class="fas fa-quote-left text-white text-4xl mb-4 opacity-50"></i>
-                <p class="text-white text-xl md:text-2xl italic leading-relaxed">
-                    "I will love you for a thousand years,<br>
-                    and if that's not enough,<br>
-                    I'll love you for a thousand more."
-                </p>
+                <p class="text-white text-xl md:text-2xl italic leading-relaxed">"I will love you for a thousand years, and if that's not enough, I'll love you for a thousand more."</p>
                 <i class="fas fa-quote-right text-white text-4xl mt-4 opacity-50"></i>
-                <div class="mt-6">
-                    <p class="text-pink-200 text-lg">— A Thousand Years, Christina Perri —</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Romantic Pickup Lines Game Section -->
-        <div class="max-w-3xl mx-auto mb-16 animate-slide-left">
-            <div class="bg-gradient-to-br from-pink-100 to-purple-100 rounded-3xl shadow-2xl p-8 transform transition-all hover:shadow-3xl">
-                <div class="text-center mb-6">
-                    <i class="fas fa-grin-tongue-squint text-pink-500 text-6xl animate-bounce"></i>
-                    <h2 class="text-4xl md:text-5xl font-bold text-pink-600 mt-4 mb-2" style="font-family: 'Dancing Script', cursive;">
-                        💕 Play A Game With Me? 💕
-                    </h2>
-                    <p class="text-gray-600 text-lg">Answer these romantic questions... I have a feeling you'll love the answers! 😘</p>
-                </div>
-                
-                <div class="bg-white/90 backdrop-blur rounded-2xl p-8 mb-6 shadow-lg">
-                    <div class="text-center">
-                        <div class="text-pink-400 text-sm mb-2 font-semibold" id="questionCounter">
-                            Question <span id="currentQNum">1</span> of <span id="totalQNum">0</span>
-                        </div>
-                        <div class="text-2xl md:text-3xl font-bold text-gray-800 mb-6" id="pickupQuestion">
-                            Loading questions...
-                        </div>
-                        <div class="flex flex-col md:flex-row gap-3 justify-center">
-                            <input type="text" id="userAnswer" placeholder="Type your answer here..." 
-                                   class="flex-1 px-4 py-3 border-2 border-pink-300 rounded-xl focus:outline-none focus:border-pink-500 transition-all text-center md:text-left"
-                                   onkeypress="checkEnter(event)">
-                            <button onclick="checkAnswer()" 
-                                    class="bg-gradient-to-r from-pink-500 to-pink-600 text-white px-8 py-3 rounded-xl font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                                <i class="fas fa-heart"></i> Answer
-                            </button>
-                        </div>
-                        <div id="feedbackMessage" class="mt-6 hidden">
-                            <div class="bg-gradient-to-r from-green-100 to-green-200 rounded-xl p-4">
-                                <i class="fas fa-smile-wink text-green-500 text-2xl mb-2"></i>
-                                <p id="feedbackText" class="text-green-700 text-lg"></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
-                    <div id="progressBar" class="bg-gradient-to-r from-pink-400 to-pink-600 h-3 rounded-full transition-all duration-500" style="width: 0%"></div>
-                </div>
-                
-                <div id="resetButton" class="text-center mt-6 hidden">
-                    <button onclick="resetGame()" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-semibold hover:shadow-2xl transform hover:scale-105 transition-all">
-                        <i class="fas fa-redo-alt"></i> Play Again 💕
-                    </button>
-                </div>
+                <div class="mt-6"><p class="text-pink-200 text-lg">— A Thousand Years, Christina Perri —</p></div>
             </div>
         </div>
         
-        <!-- My Answers Review Section -->
-        <div class="max-w-4xl mx-auto mb-16 animate-slide-right">
-            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl shadow-2xl p-8">
+        <!-- Pickup Lines Game -->
+        <div class="max-w-3xl mx-auto mb-16 animate-slide-left">
+            <div class="bg-gradient-to-br from-pink-100 to-purple-100 rounded-3xl shadow-2xl p-8">
                 <div class="text-center mb-6">
-                    <i class="fas fa-journal-whills text-pink-500 text-6xl animate-float"></i>
-                    <h2 class="text-4xl md:text-5xl font-bold text-pink-600 mt-4 mb-2" style="font-family: 'Dancing Script', cursive;">
-                        💭 My Sweet Answers 💭
-                    </h2>
-                    <p class="text-gray-600 text-lg">A collection of your beautiful responses and my romantic replies 💕</p>
+                    <i class="fas fa-grin-tongue-squint text-pink-500 text-6xl"></i>
+                    <h2 class="text-4xl md:text-5xl font-bold text-pink-600 mt-4 mb-2" style="font-family: 'Dancing Script', cursive;">💕 Play A Game With Me? 💕</h2>
+                    <p class="text-gray-600 text-lg">Answer these romantic questions... I have a feeling you'll love the answers! 😘</p>
                 </div>
-                <div id="reviewContainer" class="space-y-4 max-h-96 overflow-y-auto p-2">
-                    <div class="text-center text-gray-500 py-8">
-                        <i class="fas fa-heart-beat text-4xl mb-3 text-pink-300"></i>
-                        <p>Answer some pickup lines first, and they'll appear here! 💖</p>
+                <div class="bg-white/90 rounded-2xl p-8 mb-6 shadow-lg">
+                    <div class="text-center">
+                        <div class="text-pink-400 text-sm mb-2 font-semibold">Question <span id="currentQNum">1</span> of <span id="totalQNum">0</span></div>
+                        <div class="text-2xl md:text-3xl font-bold text-gray-800 mb-6" id="pickupQuestion">Loading questions...</div>
+                        <div class="flex flex-col md:flex-row gap-3 justify-center">
+                            <input type="text" id="userAnswer" placeholder="Type your answer here..." class="flex-1 px-4 py-3 border-2 border-pink-300 rounded-xl focus:outline-none focus:border-pink-500" onkeypress="checkEnter(event)">
+                            <button onclick="checkAnswer()" class="bg-gradient-to-r from-pink-500 to-pink-600 text-white px-8 py-3 rounded-xl font-semibold hover:scale-105 transition-all"><i class="fas fa-heart"></i> Answer</button>
+                        </div>
+                        <div id="feedbackMessage" class="mt-6 hidden"><div class="bg-gradient-to-r from-green-100 to-green-200 rounded-xl p-4"><i class="fas fa-smile-wink text-green-500 text-2xl mb-2"></i><p id="feedbackText" class="text-green-700 text-lg"></p></div></div>
                     </div>
                 </div>
-                <div id="shareSection" class="text-center mt-6 hidden">
-                    <button onclick="downloadAnswers()" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-2xl transform hover:scale-105 transition-all mr-3">
-                        <i class="fas fa-download"></i> Download Our Conversation 💕
-                    </button>
-                    <button onclick="shareAnswers()" class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-3 rounded-xl font-semibold hover:shadow-2xl transform hover:scale-105 transition-all">
-                        <i class="fas fa-share-alt"></i> Share This Moment 💫
-                    </button>
-                </div>
+                <div class="w-full bg-gray-200 rounded-full h-3 overflow-hidden"><div id="progressBar" class="bg-gradient-to-r from-pink-400 to-pink-600 h-3 rounded-full transition-all duration-500" style="width: 0%"></div></div>
+                <div id="resetButton" class="text-center mt-6 hidden"><button onclick="resetGame()" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-2 rounded-full font-semibold hover:scale-105 transition-all"><i class="fas fa-redo-alt"></i> Play Again 💕</button></div>
+            </div>
+        </div>
+        
+        <!-- Answers Review -->
+        <div class="max-w-4xl mx-auto mb-16 animate-slide-right">
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-3xl shadow-2xl p-8">
+                <div class="text-center mb-6"><i class="fas fa-journal-whills text-pink-500 text-6xl animate-float"></i><h2 class="text-4xl md:text-5xl font-bold text-pink-600 mt-4 mb-2" style="font-family: 'Dancing Script', cursive;">💭 My Sweet Answers 💭</h2><p class="text-gray-600 text-lg">A collection of your beautiful responses and my romantic replies 💕</p></div>
+                <div id="reviewContainer" class="space-y-4 max-h-96 overflow-y-auto p-2"><div class="text-center text-gray-500 py-8"><i class="fas fa-heart-beat text-4xl mb-3 text-pink-300"></i><p>Answer some pickup lines first, and they'll appear here! 💖</p></div></div>
+                <div id="shareSection" class="text-center mt-6 hidden"><button onclick="downloadAnswers()" class="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition-all mr-3"><i class="fas fa-download"></i> Download Our Conversation 💕</button><button onclick="shareAnswers()" class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-3 rounded-xl font-semibold hover:scale-105 transition-all"><i class="fas fa-share-alt"></i> Share This Moment 💫</button></div>
             </div>
         </div>
         
         <!-- Footer -->
         <div class="text-center mb-8">
             <div class="bg-white/20 backdrop-blur rounded-2xl p-6 inline-block">
-                <div class="flex gap-2 justify-center mb-3">
-                    <i class="fas fa-heart text-red-400 animate-pulse"></i>
-                    <i class="fas fa-heart text-pink-400 animate-pulse delay-100"></i>
-                    <i class="fas fa-heart text-red-400 animate-pulse delay-200"></i>
-                </div>
+                <div class="flex gap-2 justify-center mb-3"><i class="fas fa-heart text-red-400 animate-pulse"></i><i class="fas fa-heart text-pink-400 animate-pulse delay-100"></i><i class="fas fa-heart text-red-400 animate-pulse delay-200"></i></div>
                 <p class="text-white text-xl">You mean the world to me, {{ girl_name }}. Today and every day.</p>
                 <p class="text-pink-200 mt-3">Made with infinite love just for you 💕</p>
             </div>
@@ -566,18 +375,16 @@
     
     <!-- Photo Modal -->
     <div id="photoModal" class="fixed inset-0 bg-black/95 z-50 hidden items-center justify-center cursor-pointer" onclick="closeModal()">
-        <div class="relative max-w-5xl max-h-screen p-4">
-            <img id="modalImage" class="max-w-full max-h-screen rounded-2xl shadow-2xl" alt="Memory">
-            <p id="modalCaption" class="text-white text-center mt-6 text-2xl font-semibold"></p>
-        </div>
+        <div class="relative max-w-5xl max-h-screen p-4"><img id="modalImage" class="max-w-full max-h-screen rounded-2xl shadow-2xl"><p id="modalCaption" class="text-white text-center mt-6 text-2xl font-semibold"></p></div>
         <button class="absolute top-5 right-5 text-white text-6xl hover:scale-110 transition-transform" onclick="closeModal()">&times;</button>
     </div>
 
     <script>
-        // ==================== MUSIC PLAYER ====================
+        // ==================== MUSIC PLAYER - FIXED VERSION ====================
         let songs = [];
         let currentSongIndex = 0;
         let isAutoPlayEnabled = true;
+        let activeIframes = {};
         
         function loadSongs() {
             const songCards = document.querySelectorAll('.music-card');
@@ -585,16 +392,14 @@
             songCards.forEach((card, index) => {
                 const songUrl = card.getAttribute('data-song-url');
                 const songTitle = card.getAttribute('data-song-title');
-                if (songUrl) {
-                    songs.push({
-                        id: index,
-                        url: songUrl,
-                        title: songTitle,
-                        element: card
-                    });
+                if (songUrl && songTitle) {
+                    songs.push({ id: index, url: songUrl, title: songTitle, element: card });
                 }
             });
-            document.getElementById('totalQNum').textContent = songs.length || 8;
+            console.log(`✅ Loaded ${songs.length} songs`);
+            if (document.getElementById('totalQNum')) {
+                document.getElementById('totalQNum').textContent = songs.length || 3;
+            }
         }
         
         function playSong(element) {
@@ -602,34 +407,54 @@
             const songTitle = element.getAttribute('data-song-title');
             const songId = element.getAttribute('data-song-id');
             
-            if (!songUrl) return;
+            if (!songUrl) {
+                console.error('No song URL found');
+                return;
+            }
             
+            // Update now playing display
             document.getElementById('nowPlayingTitle').textContent = songTitle || 'Love Song';
             document.getElementById('nowPlayingArtist').innerHTML = '❤️ Playing now';
             
-            let iframe = document.getElementById(`iframe-${songId}`);
-            if (!iframe) {
-                iframe = document.createElement('iframe');
-                iframe.id = `iframe-${songId}`;
-                iframe.src = songUrl;
-                iframe.width = "0";
-                iframe.height = "0";
-                iframe.frameBorder = "0";
-                iframe.allow = "autoplay; clipboard-write; encrypted-media; fullscreen";
-                iframe.style.display = "none";
-                document.body.appendChild(iframe);
+            // Remove existing iframe from this song card if present
+            const existingIframe = element.querySelector('.song-iframe');
+            if (existingIframe) {
+                existingIframe.remove();
             }
-            iframe.src = songUrl;
-            currentSongIndex = parseInt(songId);
             
+            // Create new visible iframe
+            const iframe = document.createElement('iframe');
+            iframe.className = 'song-iframe w-full rounded-lg mt-2';
+            iframe.src = songUrl;
+            iframe.height = '80';
+            iframe.frameBorder = '0';
+            iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+            iframe.allowFullscreen = true;
+            
+            // Add iframe to the song card
+            const flexDiv = element.querySelector('.flex-1.min-w-0');
+            if (flexDiv) {
+                flexDiv.appendChild(iframe);
+            }
+            
+            // Highlight current song
             document.querySelectorAll('.music-card').forEach(card => {
                 card.classList.remove('ring-2', 'ring-pink-500', 'bg-pink-100');
             });
             element.classList.add('ring-2', 'ring-pink-500', 'bg-pink-100');
+            
+            // Scroll iframe into view
+            setTimeout(() => iframe.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 100);
+            
+            currentSongIndex = parseInt(songId);
+            console.log(`🎵 Now playing: ${songTitle}`);
         }
         
         function playRandomSong() {
-            if (songs.length === 0) return;
+            if (songs.length === 0) {
+                console.log('No songs available');
+                return;
+            }
             let randomIndex = Math.floor(Math.random() * songs.length);
             if (songs.length > 1 && randomIndex === currentSongIndex) {
                 randomIndex = (randomIndex + 1) % songs.length;
@@ -637,6 +462,17 @@
             if (songs[randomIndex] && songs[randomIndex].element) {
                 playSong(songs[randomIndex].element);
                 currentSongIndex = randomIndex;
+                
+                Swal.fire({
+                    title: '🎵 Now Playing',
+                    text: songs[randomIndex].title,
+                    icon: 'success',
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 2000,
+                    background: 'linear-gradient(135deg, #ffe6f0, #ffb6c1)'
+                });
             }
         }
         
@@ -648,15 +484,12 @@
                     isAutoPlayEnabled = this.checked;
                 });
             }
-            setTimeout(() => { if (songs.length > 0 && isAutoPlayEnabled) playRandomSong(); }, 3000);
-            setInterval(() => {
-                if (isAutoPlayEnabled && songs.length > 0) {
-                    const nowPlaying = document.getElementById('nowPlayingTitle').textContent;
-                    if (nowPlaying !== 'Select a song') {
-                        setTimeout(() => { if (isAutoPlayEnabled) playRandomSong(); }, 2000);
-                    }
+            // Auto-start random song after 2 seconds
+            setTimeout(() => {
+                if (songs.length > 0 && isAutoPlayEnabled) {
+                    playRandomSong();
                 }
-            }, 30000);
+            }, 2000);
         }
         
         // ==================== MUSIC PANEL TOGGLE ====================
@@ -674,17 +507,16 @@
         // ==================== FLOATING HEARTS ====================
         function createHeart() {
             const heart = document.createElement('div');
-            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝', '🎂', '🎉', '🎈', '💋', '🌸', '🌹', '✨', '⭐'];
-            const isType1 = Math.random() > 0.5;
+            const hearts = ['❤️', '💕', '💖', '💗', '💓', '💝', '🎂', '🎉', '🎈', '🌸', '🌹', '✨'];
             heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-            heart.className = isType1 ? 'floating-heart' : 'floating-heart-2';
+            heart.className = 'floating-heart';
             heart.style.left = Math.random() * 100 + '%';
             heart.style.fontSize = (Math.random() * 25 + 20) + 'px';
             heart.style.opacity = Math.random() * 0.8 + 0.2;
             document.getElementById('heartsContainer').appendChild(heart);
             setTimeout(() => heart.remove(), 6000);
         }
-        setInterval(createHeart, 150);
+        setInterval(createHeart, 200);
         
         // ==================== BLOW CANDLES ====================
         function blowCandles() {
@@ -696,8 +528,8 @@
                 confirmButtonText: '💖 I Made My Wish 💖',
                 background: 'linear-gradient(135deg, #ffe6f0, #ffb6c1)'
             });
-            const colors = ['#ff1493', '#ff69b4', '#ffb6c1', '#ffc0cb', '#ff69b4', '#ff85b3'];
-            for(let i = 0; i < 200; i++) {
+            const colors = ['#ff1493', '#ff69b4', '#ffb6c1', '#ffc0cb'];
+            for(let i = 0; i < 150; i++) {
                 const confetti = document.createElement('div');
                 confetti.style.position = 'fixed';
                 confetti.style.width = (Math.random() * 12 + 6) + 'px';
@@ -707,215 +539,165 @@
                 confetti.style.top = '-20px';
                 confetti.style.pointerEvents = 'none';
                 confetti.style.zIndex = '9999';
-                confetti.style.borderRadius = '2px';
-                confetti.style.opacity = '0.8';
                 document.body.appendChild(confetti);
-                const animation = confetti.animate([
+                confetti.animate([
                     { transform: 'translateY(0px) rotate(0deg)', opacity: 1 },
                     { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 540}deg)`, opacity: 0 }
-                ], { duration: Math.random() * 3000 + 2000, easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)' });
-                animation.onfinish = () => confetti.remove();
+                ], { duration: Math.random() * 3000 + 2000 });
+                setTimeout(() => confetti.remove(), 3000);
             }
         }
         
         // ==================== PHOTO MODAL ====================
         function showPhotoModal(imgUrl, caption) {
-            const modal = document.getElementById('photoModal');
-            const modalImg = document.getElementById('modalImage');
-            const modalCaption = document.getElementById('modalCaption');
-            modal.style.display = 'flex';
-            modalImg.src = imgUrl;
-            modalCaption.textContent = caption;
+            document.getElementById('photoModal').style.display = 'flex';
+            document.getElementById('modalImage').src = imgUrl;
+            document.getElementById('modalCaption').textContent = caption;
         }
         function closeModal() { document.getElementById('photoModal').style.display = 'none'; }
         
-        // ==================== COUNTDOWN TIMER ====================
+        // ==================== COUNTDOWN ====================
         function updateCountdown() {
             const now = new Date();
             let birthday = new Date(now.getFullYear(), 4, 15);
             if (now > birthday) birthday = new Date(now.getFullYear() + 1, 4, 15);
             const diff = birthday - now;
-            const isBirthdayToday = now.getDate() === 15 && now.getMonth() === 4;
-            if (isBirthdayToday) {
-                document.getElementById('days').textContent = '0';
-                document.getElementById('hours').textContent = '0';
-                document.getElementById('minutes').textContent = '0';
-                document.getElementById('seconds').textContent = '0';
-                return;
-            }
             const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
             const hours = Math.floor((diff % (86400000)) / (3600000));
-            const minutes = Math.floor((diff % (3600000)) / (60000));
-            const seconds = Math.floor((diff % (60000)) / 1000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            const seconds = Math.floor((diff % 60000) / 1000);
             document.getElementById('days').textContent = days;
             document.getElementById('hours').textContent = hours;
             document.getElementById('minutes').textContent = minutes;
             document.getElementById('seconds').textContent = seconds;
+            const msg = document.getElementById('countdownMessage');
+            if (msg) {
+                if (days === 1) msg.innerHTML = '🎉 TOMORROW IS YOUR BIRTHDAY! 🎉';
+                else if (days <= 7) msg.innerHTML = `💕 Only ${days} days until your special day! 💕`;
+                else msg.innerHTML = `🎈 ${days} days until we celebrate YOU! 🎈`;
+            }
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
         
-        // ==================== PICKUP LINES GAME ====================
+        // ==================== PICKUP LINES ====================
         let pickupLines = [];
         const serverPickupLines = {{ pickup_lines|safe }};
-        
         if (serverPickupLines && serverPickupLines.length > 0) {
             pickupLines = serverPickupLines;
         } else {
             pickupLines = [
-                { question: "Do you know what time it is? 🕐", expectedAnswers: ["time", "what time", "the time", "yes", "yeah", "sure"], response: "No, it's the time I think about you! 💭💕", hint: "Think about time..." },
-                { question: "Are you a magician? ✨", expectedAnswers: ["magician", "yes", "yeah", "maybe", "no"], response: "Because whenever I look at you, everyone else disappears! 🎩✨", hint: "It's about magic..." },
-                { question: "Did it hurt? 😢", expectedAnswers: ["hurt", "what", "when", "yes", "no"], response: "When you fell from heaven? Because you're an angel! 👼💕", hint: "Think about angels..." }
+                { question: "Do you know what time it is? 🕐", expectedAnswers: ["time", "what time", "the time"], response: "No, it's the time I think about you! 💭💕", hint: "Think about time..." },
+                { question: "Are you a magician? ✨", expectedAnswers: ["magician", "magic", "trick"], response: "Because whenever I look at you, everyone else disappears! 🎩✨", hint: "Think about magic..." }
             ];
         }
         
         document.addEventListener('DOMContentLoaded', function() {
-            if (document.getElementById('totalQNum')) {
-                document.getElementById('totalQNum').textContent = pickupLines.length;
-            }
-            if (typeof updateQuestionDisplay === 'function') updateQuestionDisplay();
+            document.getElementById('totalQNum').textContent = pickupLines.length;
             initMusicPlayer();
             const panel = document.getElementById('musicPanel');
             if (panel) { panel.classList.remove('hidden'); panel.style.transform = 'translateX(0)'; }
+            updateQuestionDisplay();
         });
         
-        let currentQuestionIndex = 0;
-        let answeredQuestions = [];
+        let currentQIndex = 0;
         let gameCompleted = false;
         let answeredHistory = [];
         
         function updateQuestionDisplay() {
-            if (currentQuestionIndex < pickupLines.length) {
-                const currentLine = pickupLines[currentQuestionIndex];
-                document.getElementById('pickupQuestion').textContent = currentLine.question;
-                document.getElementById('currentQNum').textContent = currentQuestionIndex + 1;
+            if (currentQIndex < pickupLines.length) {
+                const line = pickupLines[currentQIndex];
+                document.getElementById('pickupQuestion').textContent = line.question;
+                document.getElementById('currentQNum').textContent = currentQIndex + 1;
                 document.getElementById('totalQNum').textContent = pickupLines.length;
                 document.getElementById('userAnswer').value = '';
                 document.getElementById('feedbackMessage').classList.add('hidden');
-                document.getElementById('userAnswer').focus();
-                const progress = (currentQuestionIndex / pickupLines.length) * 100;
+                const progress = (currentQIndex / pickupLines.length) * 100;
                 document.getElementById('progressBar').style.width = progress + '%';
-                
                 const oldHint = document.querySelector('.hint-message');
                 if (oldHint) oldHint.remove();
-                const questionDiv = document.getElementById('pickupQuestion');
-                const newHint = document.createElement('div');
-                newHint.className = 'hint-message text-xs text-gray-400 mt-2 cursor-help';
-                newHint.innerHTML = `<i class="fas fa-lightbulb"></i> Hint: ${currentLine.hint}`;
-                questionDiv.parentNode.appendChild(newHint);
+                const hintDiv = document.createElement('div');
+                hintDiv.className = 'hint-message text-xs text-gray-400 mt-2 cursor-help';
+                hintDiv.innerHTML = `<i class="fas fa-lightbulb"></i> Hint: ${line.hint}`;
+                document.getElementById('pickupQuestion').parentNode.appendChild(hintDiv);
             } else {
                 gameCompleted = true;
                 document.getElementById('pickupQuestion').innerHTML = "🎉 You've completed all the pickup lines! 🎉";
                 document.getElementById('userAnswer').disabled = true;
                 document.querySelector('button[onclick="checkAnswer()"]').disabled = true;
                 document.getElementById('resetButton').classList.remove('hidden');
-                Swal.fire({ title: '💕 You Did It! 💕', html: `<p>You answered all ${pickupLines.length} pickup lines!</p><p class="text-pink-500 font-semibold">I hope they made you smile 🥰</p>`, icon: 'success', confirmButtonColor: '#ff1493', confirmButtonText: 'I Love You! 💕' });
+                Swal.fire({ title: '💕 You Did It! 💕', html: `<p>You answered all ${pickupLines.length} pickup lines!</p><p class="text-pink-500 font-semibold">I hope they made you smile 🥰</p>`, icon: 'success', confirmButtonColor: '#ff1493' });
             }
         }
         
         function checkAnswer() {
             if (gameCompleted) return;
             const userInput = document.getElementById('userAnswer').value.trim().toLowerCase();
-            const currentLine = pickupLines[currentQuestionIndex];
-            let isCorrect = false;
-            for (let expected of currentLine.expectedAnswers) {
-                if (userInput.includes(expected) || expected.includes(userInput)) { isCorrect = true; break; }
-            }
-            const feedback = document.getElementById('feedbackMessage');
-            const feedbackText = document.getElementById('feedbackText');
             if (userInput === "") {
-                Swal.fire({ title: '😊 Hey Beautiful!', text: 'Type something sweet... anything!', icon: 'info', confirmButtonColor: '#ff1493', timer: 2000, showConfirmButton: false });
+                Swal.fire({ title: '😊 Hey Beautiful!', text: 'Type something sweet...', icon: 'info', timer: 1500, showConfirmButton: false });
                 return;
             }
+            const currentLine = pickupLines[currentQIndex];
+            let isCorrect = currentLine.expectedAnswers.some(ans => userInput.includes(ans));
+            const feedback = document.getElementById('feedbackMessage');
+            const feedbackText = document.getElementById('feedbackText');
+            
+            answeredHistory.push({ question: currentLine.question, userAnswer: userInput, sweetResponse: currentLine.response, timestamp: new Date().toLocaleString() });
+            updateReviewSection();
+            
             if (isCorrect || userInput.length > 0) {
                 feedback.classList.remove('hidden');
                 feedbackText.innerHTML = currentLine.response;
-                createMiniConfetti();
-                answeredQuestions.push(currentQuestionIndex);
-                answeredHistory.push({ question: currentLine.question, userAnswer: userInput, sweetResponse: currentLine.response, timestamp: new Date().toLocaleString() });
-                updateReviewSection();
-                setTimeout(() => { currentQuestionIndex++; updateQuestionDisplay(); }, 2000);
+                setTimeout(() => { currentQIndex++; updateQuestionDisplay(); }, 2000);
             } else {
                 feedback.classList.remove('hidden');
-                feedbackText.innerHTML = "Hmm... that's not quite right, but I still think you're adorable! 💕";
+                feedbackText.innerHTML = "Hmm... not quite right, but you're still adorable! 💕";
                 setTimeout(() => feedback.classList.add('hidden'), 2000);
             }
         }
         
-        function checkEnter(event) { if (event.key === 'Enter') checkAnswer(); }
-        
-        function resetGame() {
-            currentQuestionIndex = 0;
-            answeredQuestions = [];
-            gameCompleted = false;
-            document.getElementById('userAnswer').disabled = false;
-            document.querySelector('button[onclick="checkAnswer()"]').disabled = false;
-            updateQuestionDisplay();
-            document.getElementById('resetButton').classList.add('hidden');
-            Swal.fire({ title: '🔄 Game Restarted! 🔄', text: 'Want to play again? 💕', icon: 'success', confirmButtonColor: '#ff1493', timer: 1500, showConfirmButton: false });
-        }
-        
-        function createMiniConfetti() {
-            for(let i = 0; i < 30; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.position = 'fixed';
-                confetti.style.width = '6px';
-                confetti.style.height = '6px';
-                confetti.style.backgroundColor = ['#ff1493', '#ff69b4', '#ffb6c1'][Math.floor(Math.random() * 3)];
-                confetti.style.left = (window.innerWidth / 2 + (Math.random() - 0.5) * 100) + 'px';
-                confetti.style.top = (window.innerHeight / 2 + (Math.random() - 0.5) * 100) + 'px';
-                confetti.style.pointerEvents = 'none';
-                confetti.style.zIndex = '9999';
-                confetti.style.borderRadius = '50%';
-                document.body.appendChild(confetti);
-                confetti.animate([{ transform: 'scale(1) translateY(0)', opacity: 1 }, { transform: 'scale(0) translateY(-50px)', opacity: 0 }], { duration: 1000, easing: 'ease-out' }).onfinish = () => confetti.remove();
-            }
-        }
+        function checkEnter(e) { if (e.key === 'Enter') checkAnswer(); }
+        function resetGame() { currentQIndex = 0; gameCompleted = false; updateQuestionDisplay(); document.getElementById('resetButton').classList.add('hidden'); }
         
         function updateReviewSection() {
-            const reviewContainer = document.getElementById('reviewContainer');
-            const shareSection = document.getElementById('shareSection');
+            const container = document.getElementById('reviewContainer');
+            const shareBtn = document.getElementById('shareSection');
             if (answeredHistory.length === 0) {
-                reviewContainer.innerHTML = `<div class="text-center text-gray-500 py-8"><i class="fas fa-heart-beat text-4xl mb-3 text-pink-300"></i><p>Answer some pickup lines first, and they'll appear here! 💖</p></div>`;
-                shareSection.classList.add('hidden');
+                container.innerHTML = `<div class="text-center text-gray-500 py-8"><i class="fas fa-heart-beat text-4xl mb-3 text-pink-300"></i><p>Answer some pickup lines first!</p></div>`;
+                shareBtn.classList.add('hidden');
                 return;
             }
-            shareSection.classList.remove('hidden');
-            let reviewHTML = '';
-            answeredHistory.forEach((item, index) => {
-                reviewHTML += `<div class="bg-white rounded-xl p-4 shadow-md hover:shadow-lg transition-all"><div class="flex items-center justify-between mb-2"><div class="flex items-center gap-2"><div class="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">${index + 1}</div><span class="text-xs text-gray-400">${item.timestamp}</span></div><i class="fas fa-heart text-pink-400 text-sm"></i></div><div class="mb-3"><p class="text-gray-500 text-sm">💬 My Love Asked:</p><p class="text-gray-800 font-semibold text-lg">${item.question}</p></div><div class="mb-3 bg-pink-50 rounded-lg p-3"><p class="text-pink-500 text-sm">💖 My Answer:</p><p class="text-gray-700 italic">"${item.userAnswer}"</p></div><div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-3"><p class="text-purple-500 text-sm">✨ His Sweet Reply:</p><p class="text-gray-700 font-semibold">${item.sweetResponse}</p></div></div>`;
+            shareBtn.classList.remove('hidden');
+            let html = '';
+            answeredHistory.forEach((item, idx) => {
+                html += `<div class="bg-white rounded-xl p-4 shadow-md"><div class="flex items-center gap-2 mb-2"><div class="w-6 h-6 bg-pink-500 rounded-full flex items-center justify-center text-white text-xs font-bold">${idx+1}</div><span class="text-xs text-gray-400">${item.timestamp}</span></div><div class="mb-3"><p class="text-gray-500 text-sm">💬 Asked:</p><p class="text-gray-800 font-semibold">${item.question}</p></div><div class="mb-3 bg-pink-50 rounded-lg p-3"><p class="text-pink-500 text-sm">💖 My Answer:</p><p class="text-gray-700 italic">"${item.userAnswer}"</p></div><div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-lg p-3"><p class="text-purple-500 text-sm">✨ Reply:</p><p class="text-gray-700 font-semibold">${item.sweetResponse}</p></div></div>`;
             });
-            reviewContainer.innerHTML = reviewHTML;
-            const summaryDiv = document.createElement('div');
-            summaryDiv.className = 'bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-4 mb-4 text-center';
-            summaryDiv.innerHTML = `<div class="flex items-center justify-center gap-2 mb-2"><i class="fas fa-chart-line text-pink-500"></i><span class="font-bold text-gray-700">Our Love Conversation</span><i class="fas fa-chart-line text-pink-500"></i></div><p class="text-gray-600">You've answered <span class="font-bold text-pink-600">${answeredHistory.length}</span> sweet questions! 💕</p><div class="flex justify-center gap-1 mt-2">${'❤️'.repeat(Math.min(answeredHistory.length, 10))}</div>`;
-            reviewContainer.insertBefore(summaryDiv, reviewContainer.firstChild);
+            container.innerHTML = `<div class="bg-gradient-to-r from-pink-100 to-purple-100 rounded-xl p-4 mb-4 text-center"><p class="text-gray-600">You've answered <span class="font-bold text-pink-600">${answeredHistory.length}</span> sweet questions! 💕</p><div class="flex justify-center gap-1 mt-2">${'❤️'.repeat(Math.min(answeredHistory.length, 10))}</div></div>` + html;
         }
         
         function downloadAnswers() {
-            if (answeredHistory.length === 0) return;
+            if (!answeredHistory.length) return;
             let content = `💕 Our Love Conversation 💕\nDate: ${new Date().toLocaleString()}\n${'═'.repeat(50)}\n\n`;
-            answeredHistory.forEach((item, index) => {
-                content += `💬 Question ${index + 1}: ${item.question}\n💖 My Answer: ${item.userAnswer}\n✨ His Reply: ${item.sweetResponse}\n🕐 ${item.timestamp}\n${'─'.repeat(40)}\n\n`;
+            answeredHistory.forEach((item, i) => {
+                content += `💬 Q${i+1}: ${item.question}\n💖 My Answer: ${item.userAnswer}\n✨ His Reply: ${item.sweetResponse}\n🕐 ${item.timestamp}\n${'─'.repeat(40)}\n\n`;
             });
-            content += `\n${'❤️'.repeat(30)}\nYou answered ${answeredHistory.length} questions! I love you! 💕\n`;
             const blob = new Blob([content], { type: 'text/plain' });
-            const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
-            a.download = `our_love_conversation_${new Date().toISOString().slice(0,19)}.txt`;
-            document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
-            Swal.fire({ title: '💾 Saved! 💾', text: 'Our sweet conversation has been downloaded!', icon: 'success', confirmButtonColor: '#ff1493', timer: 2000 });
+            a.href = URL.createObjectURL(blob);
+            a.download = `our_love_conversation_${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            Swal.fire({ title: '💾 Saved!', text: 'Conversation downloaded!', icon: 'success', timer: 1500, showConfirmButton: false });
         }
         
         function shareAnswers() {
-            if (answeredHistory.length === 0) return;
-            let shareText = `💕 My love asked me these sweet questions and here are our answers! 💕\n\n`;
-            answeredHistory.forEach((item, index) => { shareText += `${index + 1}. ${item.question}\n   I said: "${item.userAnswer}"\n   He replied: "${item.sweetResponse}"\n\n`; });
-            shareText += `We answered ${answeredHistory.length} questions! 🥰💕`;
-            navigator.clipboard.writeText(shareText).then(() => {
-                Swal.fire({ title: '📋 Copied! 📋', text: 'Our conversation is copied to your clipboard!', icon: 'success', confirmButtonColor: '#ff1493', timer: 2000 });
+            if (!answeredHistory.length) return;
+            let text = `💕 My love asked me these sweet questions!\n\n`;
+            answeredHistory.forEach((item, i) => {
+                text += `${i+1}. ${item.question}\n   I said: "${item.userAnswer}"\n   He replied: "${item.sweetResponse}"\n\n`;
             });
+            navigator.clipboard.writeText(text);
+            Swal.fire({ title: '📋 Copied!', text: 'Conversation copied to clipboard!', icon: 'success', timer: 1500, showConfirmButton: false });
         }
     </script>
 </body>
