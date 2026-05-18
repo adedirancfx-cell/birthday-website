@@ -3,114 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Beautiful Birthday For You 💕</title>
+    <title>A Love Letter Birthday For You 💕</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Sweet Alert -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Great+Vibes&family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        @keyframes float {
+        @keyframes floatSlow {
             0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
+            50% { transform: translateY(-20px); }
         }
         
-        @keyframes glow {
-            0%, 100% { text-shadow: 0 0 15px rgba(255,105,180,0.5); }
-            50% { text-shadow: 0 0 30px rgba(255,105,180,0.8); }
+        @keyframes glowRomantic {
+            0%, 100% { text-shadow: 0 0 5px #ffb6c1, 0 0 10px #ff69b4; }
+            50% { text-shadow: 0 0 20px #ff69b4, 0 0 30px #ff1493; }
         }
         
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-60px); }
-            to { opacity: 1; transform: translateX(0); }
+        @keyframes fadeInScale {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
         
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(60px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(40px); }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes gentlePulse {
+        @keyframes heartbeat {
             0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.03); }
+            50% { transform: scale(1.08); }
+        }
+        
+        @keyframes floatHeart {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(0.5); opacity: 0; }
         }
 
-        .animate-float { animation: float 4s ease-in-out infinite; }
-        .animate-glow { animation: glow 3s ease-in-out infinite; }
-        .animate-slide-left { animation: slideInLeft 0.8s ease-out; }
-        .animate-slide-right { animation: slideInRight 0.8s ease-out; }
-        .animate-fade-up { animation: fadeInUp 0.8s ease-out; }
-        .animate-pulse-gentle { animation: gentlePulse 3s ease-in-out infinite; }
+        .animate-float { animation: floatSlow 5s ease-in-out infinite; }
+        .animate-glow-romantic { animation: glowRomantic 2.5s ease-in-out infinite; }
+        .animate-fade-scale { animation: fadeInScale 0.8s ease-out; }
+        .animate-slide-up { animation: slideUp 0.6s ease-out; }
+        .animate-heartbeat { animation: heartbeat 1.5s ease-in-out infinite; }
+        
+        .floating-heart {
+            position: fixed;
+            bottom: 0;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 9999;
+            animation: floatHeart 4s ease-out forwards;
+        }
+        
+        .romantic-card {
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 182, 193, 0.5);
+            transition: all 0.4s ease;
+        }
+        
+        .romantic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255, 105, 180, 0.15);
+            border-color: #ffb6c1;
+        }
         
         .photo-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
             overflow: hidden;
+            cursor: pointer;
         }
         
         .photo-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 30px rgba(0,0,0,0.1);
         }
         
         .photo-card img {
-            transition: transform 0.6s ease;
+            transition: transform 0.7s ease;
         }
         
         .photo-card:hover img {
-            transform: scale(1.08);
-        }
-        
-        .music-card {
-            transition: all 0.3s ease;
-            background: white;
-        }
-        
-        .music-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(255,105,180,0.15);
-        }
-        
-        .bg-gradient-soft {
-            background: linear-gradient(135deg, #f5f0ff 0%, #ffe6f0 50%, #fff0f5 100%);
+            transform: scale(1.05);
         }
         
         .wish-card {
             transition: all 0.3s ease;
-            border-left: 4px solid #ff69b4;
+            border-left: 3px solid #ffb6c1;
         }
         
         .wish-card:hover {
-            transform: translateX(8px);
-            background: white;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transform: translateX(6px);
+            background: #fff5f8;
         }
         
-        ::-webkit-scrollbar {
-            width: 8px;
+        .music-card {
+            transition: all 0.3s ease;
         }
-        ::-webkit-scrollbar-track {
-            background: #ffe6f0;
-            border-radius: 10px;
+        
+        .music-card:hover {
+            transform: translateX(-4px);
+            background: #fff0f5;
         }
-        ::-webkit-scrollbar-thumb {
-            background: #ffb6c1;
-            border-radius: 10px;
-        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #ffe0e8; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: #ffb6c1; border-radius: 10px; }
         
         /* Music Panel */
         .music-panel {
@@ -121,32 +123,36 @@
             transform: translateX(100%);
         }
         
-        /* Spotify iframe styling */
-        .spotify-frame {
-            border-radius: 12px;
-            width: 100%;
-            max-width: 100%;
+        /* Wish Button */
+        .wish-button {
+            background: linear-gradient(135deg, #ffb6c1, #ff69b4);
+            transition: all 0.3s ease;
+        }
+        
+        .wish-button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
         }
     </style>
 </head>
-<body class="bg-gradient-soft min-h-screen">
+<body class="bg-gradient-to-br from-pink-50 via-white to-pink-50 min-h-screen">
     
-    <!-- Gentle Floating Hearts (Reduced) -->
+    <!-- Floating Hearts Container -->
     <div id="heartsContainer"></div>
     
-    <!-- Music Panel - Clean Design -->
+    <!-- Music Panel -->
     <div class="fixed right-0 top-1/3 transform -translate-y-1/2 z-40" id="musicPanelContainer">
         <button onclick="toggleMusicPanel()" 
-                class="absolute -left-10 top-1/2 transform -translate-y-1/2 bg-white text-pink-500 rounded-l-xl py-3 px-2 shadow-lg hover:shadow-pink-200 transition-all duration-300">
-            <i class="fas fa-music text-lg"></i>
+                class="absolute -left-10 top-1/2 transform -translate-y-1/2 bg-white text-pink-500 rounded-l-xl py-4 px-2 shadow-lg hover:shadow-pink-200 transition-all duration-300 border border-pink-100">
+            <i class="fas fa-heart text-lg animate-pulse"></i>
         </button>
         
-        <div id="musicPanel" class="music-panel bg-white rounded-l-2xl shadow-2xl w-80 overflow-hidden">
+        <div id="musicPanel" class="music-panel bg-white rounded-l-2xl shadow-2xl w-80 overflow-hidden border-l-4 border-pink-300">
             <div class="p-4">
                 <div class="flex justify-between items-center mb-3 pb-2 border-b border-pink-100">
                     <div>
-                        <h3 class="font-semibold text-gray-700">Birthday Melodies</h3>
-                        <p class="text-xs text-gray-400">♪ For you, with love</p>
+                        <h3 class="font-semibold text-gray-700">🎵 For Your Ears</h3>
+                        <p class="text-xs text-gray-400">Songs that remind me of you</p>
                     </div>
                     <button onclick="toggleMusicPanel()" class="text-gray-300 hover:text-pink-400 transition">
                         <i class="fas fa-times"></i>
@@ -155,31 +161,22 @@
                 
                 <div class="space-y-3 max-h-96 overflow-y-auto pr-1">
                     {% for song in music_list %}
-                    <div class="music-card rounded-xl p-3 border border-pink-50">
-                        <div class="flex items-center gap-3">
-                            <div class="w-10 h-10 bg-gradient-to-r from-pink-100 to-pink-200 rounded-full flex items-center justify-center flex-shrink-0">
-                                {% if song.song_type == 'main' %}
-                                    <i class="fas fa-crown text-pink-500 text-sm"></i>
-                                {% else %}
-                                    <i class="fas fa-heart text-pink-400 text-sm"></i>
-                                {% endif %}
+                    <div class="music-card rounded-xl p-2 border border-pink-50 hover:border-pink-100">
+                        <div class="flex items-center gap-2 mb-2">
+                            <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
+                                <i class="fas fa-heart text-pink-400 text-xs"></i>
                             </div>
-                            <div class="flex-1 min-w-0">
-                                <p class="text-sm font-medium text-gray-700 truncate">{{ song.title }}</p>
-                                <p class="text-xs text-pink-400">
-                                    {% if song.song_type == 'main' %}Love Song{% else %}Sweet Track{% endif %}
-                                </p>
+                            <div>
+                                <p class="text-xs font-medium text-gray-700">{{ song.title|truncatechars:40 }}</p>
                             </div>
                         </div>
-                        <div class="mt-2">
-                            <iframe src="{{ song.spotify_embed_url }}" 
-                                    width="100%" 
-                                    height="80" 
-                                    frameborder="0" 
-                                    allow="encrypted-media" 
-                                    class="rounded-lg spotify-frame">
-                            </iframe>
-                        </div>
+                        <iframe src="{{ song.spotify_embed_url }}" 
+                                width="100%" 
+                                height="80" 
+                                frameborder="0" 
+                                allow="encrypted-media" 
+                                class="rounded-lg">
+                        </iframe>
                     </div>
                     {% empty %}
                     <div class="text-center py-6">
@@ -193,151 +190,175 @@
     </div>
     
     <!-- Main Content -->
-    <div class="container mx-auto px-4 py-8 max-w-5xl">
+    <div class="container mx-auto px-4 py-8 max-w-4xl relative z-10">
         
-        <!-- Hero Section -->
-        <div class="text-center mb-16 animate-fade-up">
-            <div class="inline-block mb-4">
-                <div class="text-7xl cursor-pointer" onclick="blowCandles()">🎂</div>
+        <!-- Hero Section - The Wish Part -->
+        <div class="text-center mb-12 animate-fade-scale" id="wishSection">
+            <div class="inline-block mb-3 cursor-pointer group" onclick="makeAWish()">
+                <div class="text-8xl relative group-hover:scale-110 transition-transform duration-300">
+                    🎂
+                    <span class="absolute -top-3 -right-2 text-yellow-400 text-2xl animate-pulse">✨</span>
+                </div>
             </div>
             
-            <h1 class="text-6xl md:text-8xl font-bold text-pink-500 mb-3 animate-glow" style="font-family: 'Dancing Script', cursive;">
-                Happy Birthday,<br>{{ girl_name }}!
+            <h1 class="text-7xl md:text-8xl font-bold text-pink-500 mb-2 animate-glow-romantic" style="font-family: 'Great Vibes', cursive;">
+                Happy Birthday,<br>{{ girl_name }}
             </h1>
             
-            <p class="text-lg text-gray-500 max-w-md mx-auto">
-                A little celebration, made just for you
-            </p>
+            <p class="text-gray-400 text-sm tracking-wide">~ A celebration of the most beautiful soul I know ~</p>
         </div>
         
-        <!-- Love Letter -->
-        <div class="max-w-2xl mx-auto mb-16 animate-slide-left">
-            <div class="bg-white rounded-2xl shadow-lg p-8 md:p-10">
-                <i class="fas fa-heart text-pink-400 text-2xl mb-4 block text-center"></i>
-                <h2 class="text-2xl font-semibold text-center text-gray-700 mb-4">For You, My Love</h2>
+        <!-- Sweet Confession Card - This will make her blush! -->
+        <div class="max-w-lg mx-auto mb-12 animate-slide-up">
+            <div class="romantic-card rounded-2xl shadow-xl p-8 text-center relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-200 via-pink-400 to-pink-200"></div>
+                <i class="fas fa-quote-right text-pink-200 text-4xl mb-4 opacity-50"></i>
+                <p class="text-gray-600 italic leading-relaxed text-lg">
+                    "Every day I wake up next to you, I realize how lucky I am. 
+                    You make my world brighter, my heart fuller, and my life infinitely better."
+                </p>
+                <div class="mt-4 flex justify-center gap-1">
+                    <i class="fas fa-heart text-pink-300 text-sm animate-heartbeat"></i>
+                    <i class="fas fa-heart text-pink-400 text-sm animate-heartbeat delay-100"></i>
+                    <i class="fas fa-heart text-pink-500 text-sm animate-heartbeat delay-200"></i>
+                </div>
+                <div class="mt-4">
+                    <p class="text-pink-400 text-sm">~ You are my favorite thought ~</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Love Letter Section -->
+        <div class="max-w-2xl mx-auto mb-12 animate-slide-up">
+            <div class="bg-white rounded-2xl shadow-lg p-8 relative">
+                <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-pink-400 text-white rounded-full px-4 py-1 text-xs">💌</div>
+                <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6 pt-4" style="font-family: 'Playfair Display', serif;">My Love Letter to You</h2>
                 
                 {% if love_message %}
-                    <div class="text-gray-600 leading-relaxed space-y-3">
+                    <div class="text-gray-600 leading-relaxed space-y-3 text-center">
                         {{ love_message.message|linebreaks }}
                     </div>
                 {% else %}
-                    <div class="text-gray-600 leading-relaxed space-y-3 text-center">
-                        <p>You are the best thing that has ever happened to me.</p>
-                        <p>Every day with you feels like a beautiful dream, and I'm so grateful that you're in my life.</p>
-                        <p class="text-pink-500 font-medium mt-4">You are loved, today and always.</p>
+                    <div class="text-gray-600 leading-relaxed space-y-4 text-center">
+                        <p>You know that feeling when you look at someone and your heart just smiles? That's you, every single day.</p>
+                        <p>I still remember the moment I knew you were special. It wasn't one thing—it was everything. The way you laugh, the way you care, the way you look at me like I actually matter.</p>
+                        <p class="text-pink-500 font-medium">You are my greatest adventure, my safest home, and the best thing that has ever happened to me.</p>
                     </div>
                 {% endif %}
                 
-                <div class="text-center mt-8">
-                    <p class="text-gray-500">Forever yours,</p>
-                    <p class="text-lg font-semibold text-pink-500">{{ your_name }}</p>
+                <div class="text-center mt-8 pt-4 border-t border-pink-100">
+                    <p class="text-gray-400 text-sm">Always & Forever,</p>
+                    <p class="text-pink-500 font-semibold text-lg">{{ your_name }}</p>
                 </div>
             </div>
         </div>
         
         <!-- Photo Gallery -->
-        <div class="mb-16">
-            <h2 class="text-2xl font-semibold text-center text-gray-700 mb-8">Treasured Moments</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="mb-12">
+            <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">Moments We Treasure</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {% for photo in photos %}
                 <div class="photo-card bg-white rounded-xl shadow-md cursor-pointer" 
                      onclick="showPhotoModal('{{ photo.image.url }}', '{{ photo.caption }}')">
-                    <div class="h-64 overflow-hidden">
+                    <div class="h-56 overflow-hidden rounded-t-xl">
                         <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="w-full h-full object-cover">
                     </div>
                     <div class="p-3 text-center">
-                        <p class="text-gray-600 text-sm">{{ photo.caption }}</p>
+                        <p class="text-gray-500 text-sm">{{ photo.caption }}</p>
                     </div>
                 </div>
                 {% empty %}
                 <div class="col-span-full text-center bg-white rounded-xl p-8">
-                    <i class="fas fa-camera text-4xl text-gray-300 mb-2"></i>
-                    <p class="text-gray-400">Add your photos in admin panel</p>
+                    <i class="fas fa-images text-4xl text-gray-300 mb-2"></i>
+                    <p class="text-gray-400 text-sm">Add your beautiful moments in admin panel</p>
                 </div>
                 {% endfor %}
             </div>
         </div>
         
-        <!-- Birthday Wishes Wall -->
-        <div class="max-w-2xl mx-auto mb-16 animate-slide-right">
+        <!-- Love Notes Wall -->
+        <div class="max-w-2xl mx-auto mb-12 animate-slide-up">
             <div class="bg-white rounded-2xl shadow-lg p-6">
-                <h2 class="text-xl font-semibold text-center text-gray-700 mb-4">Love Notes</h2>
+                <div class="text-center mb-4">
+                    <i class="fas fa-pen-fancy text-pink-300 text-xl"></i>
+                    <h2 class="text-xl font-semibold text-gray-700">Leave a Sweet Note</h2>
+                    <p class="text-xs text-gray-400">Your words will make her day even brighter 💕</p>
+                </div>
                 
                 <form method="POST" class="mb-6">
                     {% csrf_token %}
                     <input type="text" name="name" placeholder="Your name" required
-                           class="w-full px-4 py-2 border border-pink-100 rounded-lg mb-2 focus:outline-none focus:border-pink-300 transition">
+                           class="w-full px-4 py-2 border border-pink-100 rounded-lg mb-2 focus:outline-none focus:border-pink-300 transition text-sm">
                     <textarea name="message" rows="2" placeholder="Your message for {{ girl_name }}..." required
-                              class="w-full px-4 py-2 border border-pink-100 rounded-lg mb-2 focus:outline-none focus:border-pink-300 transition"></textarea>
-                    <button type="submit" class="w-full bg-pink-400 hover:bg-pink-500 text-white py-2 rounded-lg transition">
-                        Send Love <i class="fas fa-heart text-xs"></i>
+                              class="w-full px-4 py-2 border border-pink-100 rounded-lg mb-2 focus:outline-none focus:border-pink-300 transition text-sm"></textarea>
+                    <button type="submit" class="wish-button text-white py-2 rounded-lg text-sm font-medium transition">
+                        Send Your Love <i class="fas fa-heart text-xs ml-1"></i>
                     </button>
                 </form>
                 
-                <div class="space-y-3 max-h-80 overflow-y-auto">
+                <div class="space-y-2 max-h-64 overflow-y-auto">
                     {% for wish in wishes %}
                     <div class="wish-card bg-pink-50 rounded-lg p-3">
                         <div class="flex items-center gap-2 mb-1">
-                            <span class="font-medium text-pink-600 text-sm">{{ wish.name }}</span>
+                            <span class="font-medium text-pink-600 text-sm">💕 {{ wish.name }}</span>
                             <span class="text-xs text-gray-400">{{ wish.created_at|date:"M j, Y" }}</span>
                         </div>
                         <p class="text-gray-600 text-sm">{{ wish.message }}</p>
                     </div>
                     {% empty %}
                     <div class="text-center text-gray-400 py-6">
-                        <p>Be the first to leave a note</p>
+                        <p class="text-sm">Be the first to leave a love note 💌</p>
                     </div>
                     {% endfor %}
                 </div>
             </div>
         </div>
         
-        <!-- Sweet Quote -->
-        <div class="max-w-2xl mx-auto mb-16 text-center animate-fade-up">
-            <div class="bg-white/60 backdrop-blur rounded-2xl p-6">
-                <i class="fas fa-quote-left text-pink-300 text-2xl mb-3 opacity-50"></i>
-                <p class="text-gray-600 italic">
-                    "You are my today and all of my tomorrows."
+        <!-- Romantic Quote -->
+        <div class="max-w-lg mx-auto mb-12 text-center">
+            <div class="bg-gradient-to-r from-pink-50 to-white rounded-xl p-5 border border-pink-100">
+                <i class="fas fa-feather-alt text-pink-300 text-2xl mb-2"></i>
+                <p class="text-gray-500 text-sm italic">
+                    "In a sea of people, my eyes will always search only for you."
                 </p>
-                <p class="text-gray-400 text-sm mt-2">— Leo Christopher —</p>
             </div>
         </div>
         
         <!-- Footer -->
-        <div class="text-center pt-8 border-t border-pink-100">
-            <p class="text-gray-400 text-sm">Made with love, just for you</p>
-            <p class="text-gray-300 text-xs mt-1">Every day is a celebration with you</p>
+        <div class="text-center pt-6 border-t border-pink-100">
+            <p class="text-gray-400 text-sm">Made with every beat of my heart</p>
+            <div class="flex justify-center gap-2 mt-2">
+                <i class="fas fa-heart text-pink-300 text-xs animate-pulse"></i>
+                <i class="fas fa-heart text-pink-400 text-xs animate-pulse delay-100"></i>
+                <i class="fas fa-heart text-pink-500 text-xs animate-pulse delay-200"></i>
+            </div>
         </div>
     </div>
     
     <!-- Photo Modal -->
     <div id="photoModal" class="fixed inset-0 bg-black/80 z-50 hidden items-center justify-center cursor-pointer" onclick="closeModal()">
-        <div class="relative max-w-2xl max-h-screen p-4">
+        <div class="relative max-w-lg max-h-screen p-4">
             <img id="modalImage" class="w-full h-auto rounded-xl shadow-2xl" alt="Memory">
-            <p id="modalCaption" class="text-white text-center mt-3 text-lg"></p>
+            <p id="modalCaption" class="text-white text-center mt-3 text-base"></p>
         </div>
         <button class="absolute top-4 right-4 text-white text-3xl hover:scale-110 transition" onclick="closeModal()">&times;</button>
     </div>
 
     <script>
-        // Gentle floating hearts (reduced count)
-        function createHeart() {
+        // Floating hearts effect
+        function createFloatingHeart() {
             const heart = document.createElement('div');
-            const hearts = ['❤️', '💕', '💖'];
+            const hearts = ['❤️', '💕', '💖', '💗'];
             heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
-            heart.style.position = 'fixed';
-            heart.style.bottom = '-20px';
-            heart.style.right = Math.random() * 100 + '%';
-            heart.style.fontSize = (Math.random() * 15 + 12) + 'px';
-            heart.style.opacity = Math.random() * 0.4 + 0.2;
-            heart.style.pointerEvents = 'none';
-            heart.style.zIndex = '9999';
-            heart.style.animation = 'float 6s ease-in forwards';
+            heart.className = 'floating-heart';
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.fontSize = (Math.random() * 18 + 12) + 'px';
+            heart.style.opacity = Math.random() * 0.5 + 0.3;
             document.body.appendChild(heart);
-            setTimeout(() => heart.remove(), 6000);
+            setTimeout(() => heart.remove(), 4000);
         }
         
-        setInterval(createHeart, 3000);
+        setInterval(createFloatingHeart, 2000);
         
         // Music panel toggle
         function toggleMusicPanel() {
@@ -345,39 +366,50 @@
             panel.classList.toggle('hidden');
         }
         
-        // Blow candles
-        function blowCandles() {
+        // Make a wish function - This is the special part!
+        function makeAWish() {
             Swal.fire({
-                title: 'Make a Wish!',
-                text: 'May all your dreams come true ✨',
+                title: '✨ Make a Wish ✨',
+                html: `
+                    <div class="text-center">
+                        <p class="text-gray-600 mb-3">Close your eyes and make a wish...</p>
+                        <div class="bg-pink-50 rounded-lg p-4 mb-3">
+                            <p class="text-pink-500 font-medium text-sm">"May all your dreams come true"</p>
+                        </div>
+                        <p class="text-xs text-gray-400">Your wish is being sent to the stars ⭐</p>
+                    </div>
+                `,
                 icon: 'success',
                 confirmButtonColor: '#ff69b4',
-                confirmButtonText: '💕 Thank You',
+                confirmButtonText: '💕 I Made My Wish',
                 background: 'white',
-                showClass: { popup: 'animate__animated animate__bounceIn' }
+                showClass: {
+                    popup: 'animate__animated animate__bounceIn'
+                },
+                didOpen: () => {
+                    // Create special confetti for the wish
+                    for(let i = 0; i < 100; i++) {
+                        setTimeout(() => {
+                            const confetti = document.createElement('div');
+                            confetti.style.position = 'fixed';
+                            confetti.style.width = (Math.random() * 8 + 4) + 'px';
+                            confetti.style.height = (Math.random() * 8 + 4) + 'px';
+                            confetti.style.backgroundColor = ['#ff69b4', '#ffb6c1', '#ff1493', '#ffc0cb'][Math.floor(Math.random() * 4)];
+                            confetti.style.left = Math.random() * window.innerWidth + 'px';
+                            confetti.style.top = '-10px';
+                            confetti.style.pointerEvents = 'none';
+                            confetti.style.zIndex = '9999';
+                            confetti.style.borderRadius = '50%';
+                            document.body.appendChild(confetti);
+                            confetti.animate([
+                                { transform: 'translateY(0px) rotate(0deg)', opacity: 1 },
+                                { transform: `translateY(${window.innerHeight + 50}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+                            ], { duration: Math.random() * 2000 + 1500 });
+                            setTimeout(() => confetti.remove(), 2500);
+                        }, i * 15);
+                    }
+                }
             });
-            
-            // Gentle confetti
-            for(let i = 0; i < 80; i++) {
-                setTimeout(() => {
-                    const confetti = document.createElement('div');
-                    confetti.style.position = 'fixed';
-                    confetti.style.width = (Math.random() * 8 + 4) + 'px';
-                    confetti.style.height = (Math.random() * 8 + 4) + 'px';
-                    confetti.style.backgroundColor = ['#ff69b4', '#ffb6c1', '#ff1493'][Math.floor(Math.random() * 3)];
-                    confetti.style.left = Math.random() * window.innerWidth + 'px';
-                    confetti.style.top = '-10px';
-                    confetti.style.pointerEvents = 'none';
-                    confetti.style.zIndex = '9999';
-                    confetti.style.borderRadius = '50%';
-                    document.body.appendChild(confetti);
-                    confetti.animate([
-                        { transform: 'translateY(0px)', opacity: 1 },
-                        { transform: `translateY(${window.innerHeight + 50}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-                    ], { duration: Math.random() * 2000 + 1500 });
-                    setTimeout(() => confetti.remove(), 2500);
-                }, i * 30);
-            }
         }
         
         // Photo modal
@@ -397,16 +429,17 @@
         // Welcome message
         setTimeout(() => {
             Swal.fire({
-                title: 'Welcome, Beautiful!',
-                html: `<p class="text-md">This little space is just for you.</p><p class="text-pink-500 text-sm mt-2">Enjoy every moment 💕</p>`,
+                title: '💕 A Special Surprise 💕',
+                html: `<p class="text-gray-600">This is all for you, beautiful.</p>
+                       <p class="text-pink-400 text-sm mt-2">Every word, every song, every memory—just for you.</p>`,
                 icon: 'success',
                 confirmButtonColor: '#ff69b4',
-                confirmButtonText: '💖 Thank You',
-                timer: 3000,
-                showConfirmButton: false,
+                confirmButtonText: '💖 Open My Gift',
+                timer: 4000,
+                showConfirmButton: true,
                 background: 'white'
             });
-        }, 800);
+        }, 500);
     </script>
 </body>
 </html>
