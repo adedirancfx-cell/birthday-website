@@ -68,7 +68,6 @@
         .romantic-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(255, 105, 180, 0.15);
-            border-color: #ffb6c1;
         }
         
         .photo-card {
@@ -109,12 +108,10 @@
             background: #fff0f5;
         }
         
-        /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #ffe0e8; border-radius: 10px; }
         ::-webkit-scrollbar-thumb { background: #ffb6c1; border-radius: 10px; }
         
-        /* Music Panel */
         .music-panel {
             transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
@@ -123,7 +120,6 @@
             transform: translateX(100%);
         }
         
-        /* Wish Button */
         .wish-button {
             background: linear-gradient(135deg, #ffb6c1, #ff69b4);
             transition: all 0.3s ease;
@@ -133,11 +129,19 @@
             transform: scale(1.02);
             box-shadow: 0 5px 20px rgba(255, 105, 180, 0.4);
         }
+        
+        .game-card {
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .game-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body class="bg-gradient-to-br from-pink-50 via-white to-pink-50 min-h-screen">
     
-    <!-- Floating Hearts Container -->
     <div id="heartsContainer"></div>
     
     <!-- Music Panel -->
@@ -161,7 +165,7 @@
                 
                 <div class="space-y-3 max-h-96 overflow-y-auto pr-1">
                     {% for song in music_list %}
-                    <div class="music-card rounded-xl p-2 border border-pink-50 hover:border-pink-100">
+                    <div class="music-card rounded-xl p-2 border border-pink-50">
                         <div class="flex items-center gap-2 mb-2">
                             <div class="w-8 h-8 bg-pink-100 rounded-full flex items-center justify-center">
                                 <i class="fas fa-heart text-pink-400 text-xs"></i>
@@ -192,30 +196,29 @@
     <!-- Main Content -->
     <div class="container mx-auto px-4 py-8 max-w-4xl relative z-10">
         
-        <!-- Hero Section - The Wish Part -->
-        <div class="text-center mb-12 animate-fade-scale" id="wishSection">
+        <!-- Hero Section + Make a Wish -->
+        <div class="text-center mb-12 animate-fade-scale">
             <div class="inline-block mb-3 cursor-pointer group" onclick="makeAWish()">
                 <div class="text-8xl relative group-hover:scale-110 transition-transform duration-300">
                     🎂
                     <span class="absolute -top-3 -right-2 text-yellow-400 text-2xl animate-pulse">✨</span>
                 </div>
+                <p class="text-xs text-pink-400 mt-2 opacity-0 group-hover:opacity-100 transition">click to make a wish</p>
             </div>
             
             <h1 class="text-7xl md:text-8xl font-bold text-pink-500 mb-2 animate-glow-romantic" style="font-family: 'Great Vibes', cursive;">
                 Happy Birthday,<br>{{ girl_name }}
             </h1>
-            
             <p class="text-gray-400 text-sm tracking-wide">~ A celebration of the most beautiful soul I know ~</p>
         </div>
         
-        <!-- Sweet Confession Card - This will make her blush! -->
+        <!-- Sweet Confession (blush card) -->
         <div class="max-w-lg mx-auto mb-12 animate-slide-up">
             <div class="romantic-card rounded-2xl shadow-xl p-8 text-center relative overflow-hidden">
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-pink-200 via-pink-400 to-pink-200"></div>
                 <i class="fas fa-quote-right text-pink-200 text-4xl mb-4 opacity-50"></i>
                 <p class="text-gray-600 italic leading-relaxed text-lg">
-                    "Every day I wake up next to you, I realize how lucky I am. 
-                    You make my world brighter, my heart fuller, and my life infinitely better."
+                    "I didn't fall in love with you. I walked into love with you, with my eyes wide open."
                 </p>
                 <div class="mt-4 flex justify-center gap-1">
                     <i class="fas fa-heart text-pink-300 text-sm animate-heartbeat"></i>
@@ -223,32 +226,86 @@
                     <i class="fas fa-heart text-pink-500 text-sm animate-heartbeat delay-200"></i>
                 </div>
                 <div class="mt-4">
-                    <p class="text-pink-400 text-sm">~ You are my favorite thought ~</p>
+                    <p class="text-pink-400 text-sm">~ You make every day feel like a fairytale ~</p>
                 </div>
             </div>
         </div>
         
-        <!-- Love Letter Section -->
+        <!-- Love Letter -->
         <div class="max-w-2xl mx-auto mb-12 animate-slide-up">
             <div class="bg-white rounded-2xl shadow-lg p-8 relative">
                 <div class="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-pink-400 text-white rounded-full px-4 py-1 text-xs">💌</div>
                 <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6 pt-4" style="font-family: 'Playfair Display', serif;">My Love Letter to You</h2>
-                
                 {% if love_message %}
                     <div class="text-gray-600 leading-relaxed space-y-3 text-center">
                         {{ love_message.message|linebreaks }}
                     </div>
                 {% else %}
                     <div class="text-gray-600 leading-relaxed space-y-4 text-center">
-                        <p>You know that feeling when you look at someone and your heart just smiles? That's you, every single day.</p>
-                        <p>I still remember the moment I knew you were special. It wasn't one thing—it was everything. The way you laugh, the way you care, the way you look at me like I actually matter.</p>
-                        <p class="text-pink-500 font-medium">You are my greatest adventure, my safest home, and the best thing that has ever happened to me.</p>
+                        <p>You are the most beautiful thing that has ever happened to me. Every day I wake up grateful that you exist, that you chose me, that you let me love you.</p>
+                        <p>Your smile is my favorite view. Your laugh is my favorite sound. Your heart is my favorite home.</p>
+                        <p class="text-pink-500 font-medium">I love you more than all the stars in the sky.</p>
                     </div>
                 {% endif %}
-                
                 <div class="text-center mt-8 pt-4 border-t border-pink-100">
-                    <p class="text-gray-400 text-sm">Always & Forever,</p>
+                    <p class="text-gray-400 text-sm">Forever yours,</p>
                     <p class="text-pink-500 font-semibold text-lg">{{ your_name }}</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- PICKUP LINES GAME (the fun part!) -->
+        <div class="max-w-2xl mx-auto mb-12 animate-slide-up">
+            <div class="bg-gradient-to-r from-pink-50 to-white rounded-2xl shadow-lg p-6">
+                <div class="text-center mb-4">
+                    <i class="fas fa-smile-wink text-pink-400 text-2xl"></i>
+                    <h2 class="text-xl font-semibold text-gray-700 mt-2">Flirty Pickup Lines Game</h2>
+                    <p class="text-xs text-gray-400">Answer these and see my sweet replies 😉</p>
+                </div>
+                
+                <div class="bg-white rounded-xl p-5 mb-4 shadow">
+                    <div class="text-center">
+                        <div class="text-pink-400 text-xs mb-1">Question <span id="currentQNum">1</span> of <span id="totalQNum">0</span></div>
+                        <div class="text-lg font-medium text-gray-800 mb-4" id="pickupQuestion">Loading...</div>
+                        <div class="flex flex-col sm:flex-row gap-2 justify-center">
+                            <input type="text" id="userAnswer" placeholder="Type your answer..." 
+                                   class="flex-1 px-3 py-2 border border-pink-200 rounded-lg focus:outline-none focus:border-pink-400 text-sm">
+                            <button onclick="checkAnswer()" 
+                                    class="bg-pink-400 hover:bg-pink-500 text-white px-5 py-2 rounded-lg transition text-sm">
+                                <i class="fas fa-heart"></i> Answer
+                            </button>
+                        </div>
+                        <div id="feedbackMessage" class="mt-4 hidden">
+                            <div class="bg-green-50 rounded-lg p-3">
+                                <p id="feedbackText" class="text-green-600 text-sm"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="w-full bg-gray-200 rounded-full h-1.5">
+                    <div id="progressBar" class="bg-pink-400 h-1.5 rounded-full transition-all duration-500" style="width: 0%"></div>
+                </div>
+                
+                <div id="resetButton" class="text-center mt-4 hidden">
+                    <button onclick="resetGame()" class="text-pink-500 text-sm underline">Play Again 💕</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Review Section (answers history) -->
+        <div class="max-w-2xl mx-auto mb-12 animate-slide-up">
+            <div class="bg-white rounded-2xl shadow-lg p-5">
+                <div class="text-center mb-3">
+                    <i class="fas fa-journal-whills text-pink-300 text-xl"></i>
+                    <h2 class="text-lg font-semibold text-gray-700">Our Sweet Conversation</h2>
+                </div>
+                <div id="reviewContainer" class="space-y-3 max-h-64 overflow-y-auto pr-1">
+                    <div class="text-center text-gray-400 text-sm py-4">Answer some pickup lines first 💖</div>
+                </div>
+                <div id="shareSection" class="text-center mt-4 hidden">
+                    <button onclick="downloadAnswers()" class="text-pink-400 text-xs underline mr-3">Download 💾</button>
+                    <button onclick="shareAnswers()" class="text-pink-400 text-xs underline">Share 📋</button>
                 </div>
             </div>
         </div>
@@ -258,8 +315,7 @@
             <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">Moments We Treasure</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {% for photo in photos %}
-                <div class="photo-card bg-white rounded-xl shadow-md cursor-pointer" 
-                     onclick="showPhotoModal('{{ photo.image.url }}', '{{ photo.caption }}')">
+                <div class="photo-card bg-white rounded-xl shadow-md cursor-pointer" onclick="showPhotoModal('{{ photo.image.url }}', '{{ photo.caption }}')">
                     <div class="h-56 overflow-hidden rounded-t-xl">
                         <img src="{{ photo.image.url }}" alt="{{ photo.title }}" class="w-full h-full object-cover">
                     </div>
@@ -284,7 +340,6 @@
                     <h2 class="text-xl font-semibold text-gray-700">Leave a Sweet Note</h2>
                     <p class="text-xs text-gray-400">Your words will make her day even brighter 💕</p>
                 </div>
-                
                 <form method="POST" class="mb-6">
                     {% csrf_token %}
                     <input type="text" name="name" placeholder="Your name" required
@@ -295,7 +350,6 @@
                         Send Your Love <i class="fas fa-heart text-xs ml-1"></i>
                     </button>
                 </form>
-                
                 <div class="space-y-2 max-h-64 overflow-y-auto">
                     {% for wish in wishes %}
                     <div class="wish-card bg-pink-50 rounded-lg p-3">
@@ -319,7 +373,7 @@
             <div class="bg-gradient-to-r from-pink-50 to-white rounded-xl p-5 border border-pink-100">
                 <i class="fas fa-feather-alt text-pink-300 text-2xl mb-2"></i>
                 <p class="text-gray-500 text-sm italic">
-                    "In a sea of people, my eyes will always search only for you."
+                    "You are my sun, my moon, and all my stars."
                 </p>
             </div>
         </div>
@@ -345,10 +399,10 @@
     </div>
 
     <script>
-        // Floating hearts effect
+        // Floating hearts (gentle)
         function createFloatingHeart() {
             const heart = document.createElement('div');
-            const hearts = ['❤️', '💕', '💖', '💗'];
+            const hearts = ['❤️', '💕', '💖'];
             heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
             heart.className = 'floating-heart';
             heart.style.left = Math.random() * 100 + '%';
@@ -357,8 +411,7 @@
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 4000);
         }
-        
-        setInterval(createFloatingHeart, 2000);
+        setInterval(createFloatingHeart, 2500);
         
         // Music panel toggle
         function toggleMusicPanel() {
@@ -366,29 +419,17 @@
             panel.classList.toggle('hidden');
         }
         
-        // Make a wish function - This is the special part!
+        // Make a wish (with confetti)
         function makeAWish() {
             Swal.fire({
                 title: '✨ Make a Wish ✨',
-                html: `
-                    <div class="text-center">
-                        <p class="text-gray-600 mb-3">Close your eyes and make a wish...</p>
-                        <div class="bg-pink-50 rounded-lg p-4 mb-3">
-                            <p class="text-pink-500 font-medium text-sm">"May all your dreams come true"</p>
-                        </div>
-                        <p class="text-xs text-gray-400">Your wish is being sent to the stars ⭐</p>
-                    </div>
-                `,
+                html: `<div class="text-center"><p class="text-gray-600 mb-3">Close your eyes and make a wish...</p><div class="bg-pink-50 rounded-lg p-3 mb-3"><p class="text-pink-500 font-medium text-sm">"May all your dreams come true"</p></div><p class="text-xs text-gray-400">Your wish is being sent to the stars ⭐</p></div>`,
                 icon: 'success',
                 confirmButtonColor: '#ff69b4',
                 confirmButtonText: '💕 I Made My Wish',
                 background: 'white',
-                showClass: {
-                    popup: 'animate__animated animate__bounceIn'
-                },
                 didOpen: () => {
-                    // Create special confetti for the wish
-                    for(let i = 0; i < 100; i++) {
+                    for(let i = 0; i < 120; i++) {
                         setTimeout(() => {
                             const confetti = document.createElement('div');
                             confetti.style.position = 'fixed';
@@ -414,24 +455,17 @@
         
         // Photo modal
         function showPhotoModal(imgUrl, caption) {
-            const modal = document.getElementById('photoModal');
-            const modalImg = document.getElementById('modalImage');
-            const modalCaption = document.getElementById('modalCaption');
-            modal.style.display = 'flex';
-            modalImg.src = imgUrl;
-            modalCaption.textContent = caption;
+            document.getElementById('photoModal').style.display = 'flex';
+            document.getElementById('modalImage').src = imgUrl;
+            document.getElementById('modalCaption').textContent = caption;
         }
-        
-        function closeModal() {
-            document.getElementById('photoModal').style.display = 'none';
-        }
+        function closeModal() { document.getElementById('photoModal').style.display = 'none'; }
         
         // Welcome message
         setTimeout(() => {
             Swal.fire({
                 title: '💕 A Special Surprise 💕',
-                html: `<p class="text-gray-600">This is all for you, beautiful.</p>
-                       <p class="text-pink-400 text-sm mt-2">Every word, every song, every memory—just for you.</p>`,
+                html: `<p class="text-gray-600">This is all for you, beautiful.</p><p class="text-pink-400 text-sm mt-2">Every word, every song, every memory—just for you.</p>`,
                 icon: 'success',
                 confirmButtonColor: '#ff69b4',
                 confirmButtonText: '💖 Open My Gift',
@@ -440,6 +474,136 @@
                 background: 'white'
             });
         }, 500);
+        
+        // ========== PICKUP LINES GAME ==========
+        let pickupLines = [];
+        const serverPickupLines = {{ pickup_lines|safe }};
+        
+        if (serverPickupLines && serverPickupLines.length > 0) {
+            pickupLines = serverPickupLines;
+        } else {
+            pickupLines = [
+                { question: "Do you know what time it is? 🕐", expectedAnswers: ["time", "what time", "the time"], response: "No, it's the time I think about you! 💭💕", hint: "Think about time..." },
+                { question: "Are you a magician? ✨", expectedAnswers: ["magician", "magic", "trick"], response: "Because whenever I look at you, everyone else disappears! 🎩✨", hint: "Think about magic..." },
+                { question: "Did it hurt? 😢", expectedAnswers: ["hurt", "fall", "heaven"], response: "When you fell from heaven? Because you're an angel! 👼💕", hint: "Think about angels..." },
+                { question: "Are you made of sugar? 🍬", expectedAnswers: ["sugar", "sweet", "candy"], response: "Because you're so sweet! 🍭💖", hint: "Something sweet..." }
+            ];
+        }
+        
+        let currentQIndex = 0;
+        let gameCompleted = false;
+        let answeredHistory = [];
+        
+        function updateQuestionDisplay() {
+            if (currentQIndex < pickupLines.length) {
+                const line = pickupLines[currentQIndex];
+                document.getElementById('pickupQuestion').textContent = line.question;
+                document.getElementById('currentQNum').textContent = currentQIndex + 1;
+                document.getElementById('totalQNum').textContent = pickupLines.length;
+                document.getElementById('userAnswer').value = '';
+                document.getElementById('feedbackMessage').classList.add('hidden');
+                const progress = (currentQIndex / pickupLines.length) * 100;
+                document.getElementById('progressBar').style.width = progress + '%';
+                // hint
+                const oldHint = document.querySelector('.hint-message');
+                if (oldHint) oldHint.remove();
+                const hintDiv = document.createElement('div');
+                hintDiv.className = 'hint-message text-xs text-gray-400 mt-2 text-center';
+                hintDiv.innerHTML = `<i class="fas fa-lightbulb"></i> Hint: ${line.hint}`;
+                document.getElementById('pickupQuestion').parentNode.appendChild(hintDiv);
+            } else {
+                gameCompleted = true;
+                document.getElementById('pickupQuestion').innerHTML = "🎉 You've completed all the pickup lines! 🎉";
+                document.getElementById('userAnswer').disabled = true;
+                document.querySelector('button[onclick="checkAnswer()"]').disabled = true;
+                document.getElementById('resetButton').classList.remove('hidden');
+                Swal.fire({ title: "💕 You're Amazing! 💕", html: `<p>You answered all ${pickupLines.length} pickup lines!</p><p class="text-pink-500 font-semibold">You make me smile every day 🥰</p>`, icon: 'success', confirmButtonColor: '#ff69b4' });
+            }
+        }
+        
+        function checkAnswer() {
+            if (gameCompleted) return;
+            const userInput = document.getElementById('userAnswer').value.trim().toLowerCase();
+            if (userInput === "") {
+                Swal.fire({ title: '😊 Hey Gorgeous!', text: 'Type something sweet... anything!', icon: 'info', timer: 1500, showConfirmButton: false });
+                return;
+            }
+            const currentLine = pickupLines[currentQIndex];
+            let isCorrect = currentLine.expectedAnswers.some(ans => userInput.includes(ans));
+            const feedback = document.getElementById('feedbackMessage');
+            const feedbackText = document.getElementById('feedbackText');
+            
+            answeredHistory.push({ question: currentLine.question, userAnswer: userInput, sweetResponse: currentLine.response, timestamp: new Date().toLocaleString() });
+            updateReviewSection();
+            
+            if (isCorrect || userInput.length > 0) {
+                feedback.classList.remove('hidden');
+                feedbackText.innerHTML = currentLine.response;
+                setTimeout(() => { currentQIndex++; updateQuestionDisplay(); }, 2000);
+            } else {
+                feedback.classList.remove('hidden');
+                feedbackText.innerHTML = "Not exactly, but you're still absolutely adorable! 💕";
+                setTimeout(() => feedback.classList.add('hidden'), 2000);
+            }
+        }
+        
+        function checkEnter(e) { if (e.key === 'Enter') checkAnswer(); }
+        document.getElementById('userAnswer').addEventListener('keypress', checkEnter);
+        
+        function resetGame() {
+            currentQIndex = 0;
+            gameCompleted = false;
+            answeredHistory = [];
+            updateQuestionDisplay();
+            updateReviewSection();
+            document.getElementById('resetButton').classList.add('hidden');
+            document.getElementById('userAnswer').disabled = false;
+            document.querySelector('button[onclick="checkAnswer()"]').disabled = false;
+            Swal.fire({ title: '🔄 Game Restarted!', text: 'Play again and share more smiles!', icon: 'success', timer: 1500, showConfirmButton: false });
+        }
+        
+        function updateReviewSection() {
+            const container = document.getElementById('reviewContainer');
+            const shareBtn = document.getElementById('shareSection');
+            if (answeredHistory.length === 0) {
+                container.innerHTML = '<div class="text-center text-gray-400 text-sm py-4">Answer some pickup lines first 💖</div>';
+                shareBtn.classList.add('hidden');
+                return;
+            }
+            shareBtn.classList.remove('hidden');
+            let html = `<div class="bg-pink-50 rounded-lg p-2 text-center text-xs text-gray-500 mb-3">✨ You've answered <span class="font-bold text-pink-600">${answeredHistory.length}</span> questions ✨</div>`;
+            answeredHistory.forEach((item, idx) => {
+                html += `<div class="border border-pink-100 rounded-lg p-3 text-sm"><div class="flex justify-between items-center mb-1"><span class="font-medium text-pink-500">Q${idx+1}</span><span class="text-gray-400 text-xs">${item.timestamp}</span></div><div class="text-gray-700">${item.question}</div><div class="text-pink-500 text-xs mt-1">💖 ${item.userAnswer}</div><div class="text-green-600 text-xs mt-1">✨ ${item.sweetResponse}</div></div>`;
+            });
+            container.innerHTML = html;
+        }
+        
+        function downloadAnswers() {
+            if (!answeredHistory.length) return;
+            let content = `💕 Our Sweet Conversation 💕\nDate: ${new Date().toLocaleString()}\n\n`;
+            answeredHistory.forEach((item, i) => {
+                content += `${i+1}. ${item.question}\n   My answer: ${item.userAnswer}\n   His reply: ${item.sweetResponse}\n   ${item.timestamp}\n\n`;
+            });
+            const blob = new Blob([content], { type: 'text/plain' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `our_love_conversation_${Date.now()}.txt`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+            Swal.fire({ title: '💾 Saved!', text: 'Conversation downloaded!', icon: 'success', timer: 1500, showConfirmButton: false });
+        }
+        
+        function shareAnswers() {
+            if (!answeredHistory.length) return;
+            let text = `💕 My love asked me these pickup lines!\n\n`;
+            answeredHistory.forEach((item, i) => {
+                text += `${i+1}. ${item.question}\n   I said: "${item.userAnswer}"\n   He replied: "${item.sweetResponse}"\n\n`;
+            });
+            navigator.clipboard.writeText(text);
+            Swal.fire({ title: '📋 Copied!', text: 'Conversation copied to clipboard!', icon: 'success', timer: 1500, showConfirmButton: false });
+        }
+        
+        updateQuestionDisplay();
     </script>
 </body>
 </html>
